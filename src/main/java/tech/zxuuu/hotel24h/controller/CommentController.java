@@ -26,13 +26,14 @@ public class CommentController {
 
   @PostMapping("/comment/add")
   public @ResponseBody String addComment(@RequestParam("orderId") String orderId, @RequestParam("comment") String comment) {
-    System.out.println(orderId);
-    System.out.println(comment);
     Integer retCode = commentService.insertComment(new Comment(orderId, comment));
     Map map = new HashMap<String, Object>(){{
       put("status", retCode);
     }};
     return JSONUtils.buildJSON(map);
   }
+
+  @PostMapping("/comment/list")
+  public @ResponseBody String listComment(@reque)
 
 }
