@@ -6,11 +6,13 @@ import tech.zxuuu.hotel24h.entity.Comment;
 import tech.zxuuu.hotel24h.mapper.CommentMapper;
 import tech.zxuuu.hotel24h.service.CommentService;
 
+import java.util.List;
+
 @Service
 public class CommentServiceImpl implements CommentService {
 
   @Autowired
-  CommentMapper commentMapper;
+  private CommentMapper commentMapper;
 
   @Override
   /**
@@ -18,11 +20,25 @@ public class CommentServiceImpl implements CommentService {
    */
   public Integer insertComment(Comment comment) {
     Comment commentCheck = commentMapper.selectCommentById(comment.getId());
-    // 检查信息错误
+    // TODO: 检查信息错误
     if (commentCheck != null) {
       return 1;
     }
     commentMapper.insertComment(comment);
     return 0;
   }
+
+  @Override
+  public List<Comment> getAllComment() {
+    return commentMapper.selectAllComment();
+  }
+
+
+  /**
+   * 状态码：0：成功；1：失败
+   */
+  public Integer removeComment(String orderId) {
+    return commentMapper.removeComment(orderId) ? 0 : 1;
+  }
+
 }

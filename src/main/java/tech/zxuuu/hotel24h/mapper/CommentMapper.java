@@ -1,9 +1,12 @@
 package tech.zxuuu.hotel24h.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import tech.zxuuu.hotel24h.entity.Comment;
+
+import java.util.List;
 
 @Mapper
 public interface CommentMapper {
@@ -14,6 +17,10 @@ public interface CommentMapper {
   @Select("SELECT id, comment FROM tb_comment WHERE id=#{commentId}")
   Comment selectCommentById(String commentId);
 
+  @Select("SELECT id, comment FROM tb_comment")
+  List<Comment> selectAllComment();
 
+  @Delete("DELETE FROM tb_comment WHERE id=#{orderId}")
+  Boolean removeComment(String orderId);
 
 }
