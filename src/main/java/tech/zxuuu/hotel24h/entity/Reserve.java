@@ -1,20 +1,19 @@
-package tech.zxuuu.hotel24h.entity;
 
-
+import java.util.Date;
 
 public class Reserve {
-
     private String id;
-    private String roomId;
-    private String startDate;
-    private String endDate;
+    private Integer roomId;
+    private Date startDate;
+    private Date endDate;
     private String reserverName;
-    private Integer reserverPhone;
+    private String reserverPhone;
     private Integer status;
 
-    public Reserve(){};
-    public Reserve(String id, String roomId, String startDate, String endDate, String reserverName,
-                   Integer reserverPhone, Integer status) {
+    public Reserve() {
+    }
+
+    public Reserve(String id, Integer roomId, Date startDate, Date endDate, String reserverName, String reserverPhone, Integer status) {
         this.id = id;
         this.roomId = roomId;
         this.startDate = startDate;
@@ -28,9 +27,25 @@ public class Reserve {
         return id;
     }
 
+
+    @Override
+    public String toString() {
+        return "Reserve{" +
+                "id='" + id + '\'' +
+                ", roomId=" + roomId +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", reserverName='" + reserverName + '\'' +
+                ", reserverPhone='" + reserverPhone + '\'' +
+                ", status=" + status +
+                '}';
+    }
+
+
     public void setId(String id) {
         this.id = id;
     }
+
 
     public String getRoomId() {
         return roomId;
@@ -53,6 +68,29 @@ public class Reserve {
     }
 
     public void setEndDate(String endDate) {
+
+    public Integer getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+
         this.endDate = endDate;
     }
 
@@ -64,12 +102,21 @@ public class Reserve {
         this.reserverName = reserverName;
     }
 
+
     public Integer getReservePhone() {
         return reserverPhone;
     }
 
     public void setReservePhone(Integer reservePhone) {
         this.reserverPhone = reservePhone;
+
+    public String getReserverPhone() {
+        return reserverPhone;
+    }
+
+    public void setReserverPhone(String reserverPhone) {
+        this.reserverPhone = reserverPhone;
+
     }
 
     public Integer getStatus() {
@@ -92,6 +139,7 @@ public class Reserve {
                 ", status=" + status +
                 '}';
     }
+
 }
 
 

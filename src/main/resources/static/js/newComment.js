@@ -3,10 +3,6 @@
 ;(function () {
   $('#orderId').val(getQueryVariable('orderId') || '')
   $('#submitBtn').on('click', function () {
-    console.log({
-      orderId: $('#orderId').val(),
-      comment: $('#commentContent').val(),
-    })
     $.ajax({
       url: '/comment/add',
       method: 'POST',
