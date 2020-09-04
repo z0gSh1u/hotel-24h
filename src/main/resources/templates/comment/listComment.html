@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>评论页面</title>
+    <script src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
+    <script src="http://localhost:8080/js/utils.js"></script>
+    <link rel="stylesheet" href="http://localhost:8080/style/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://localhost:8080/style/listComment.css" />
+  </head>
+  <body>
+    <table id="commentTable"></table>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $('#commentTable').bootstrapTable({
+        url: 'http://localhost:8080/comment/list',
+        striped: true,
+        pageNumber: 1,
+        pagination: true,
+        sidePagination: 'client',
+        pageSize: 10,
+        columns: [
+          {
+            title: '订单号',
+            field: 'id',
+          },
+          {
+            title: '评论内容',
+            field: 'comment',
+            sortable: true,
+          },
+        ],
+      })
+    })
+  </script>
+</html>
