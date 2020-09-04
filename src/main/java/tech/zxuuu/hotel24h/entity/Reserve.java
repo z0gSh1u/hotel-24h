@@ -1,4 +1,3 @@
-package tech.zxuuu.hotel24h.entity;
 
 import java.util.Date;
 
@@ -28,6 +27,7 @@ public class Reserve {
         return id;
     }
 
+
     @Override
     public String toString() {
         return "Reserve{" +
@@ -41,9 +41,33 @@ public class Reserve {
                 '}';
     }
 
+
     public void setId(String id) {
         this.id = id;
     }
+
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
 
     public Integer getRoomId() {
         return roomId;
@@ -66,6 +90,7 @@ public class Reserve {
     }
 
     public void setEndDate(Date endDate) {
+
         this.endDate = endDate;
     }
 
@@ -77,12 +102,21 @@ public class Reserve {
         this.reserverName = reserverName;
     }
 
+
+    public Integer getReservePhone() {
+        return reserverPhone;
+    }
+
+    public void setReservePhone(Integer reservePhone) {
+        this.reserverPhone = reservePhone;
+
     public String getReserverPhone() {
         return reserverPhone;
     }
 
     public void setReserverPhone(String reserverPhone) {
         this.reserverPhone = reserverPhone;
+
     }
 
     public Integer getStatus() {
@@ -92,6 +126,20 @@ public class Reserve {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Reserve{" +
+                "id='" + id + '\'' +
+                ", roomId='" + roomId + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", reserverName='" + reserverName + '\'' +
+                ", reservePhone=" + reserverPhone +
+                ", status=" + status +
+                '}';
+    }
+
 }
 
 
