@@ -12,6 +12,9 @@ import java.util.List;
 @Mapper
 public interface ReserveMapper {
 
+  @Select("SELECT * FROM tb_reserve WHERE id=#{id}")
+  Reserve selectReserveById(String id);
+
   @Insert("INSERT INTO tb_reserve " +
     "VALUES(#{id},#{roomId},#{startDate},#{endDate},#{reserverName},#{reserverPhone},#{status} )")
   void insertReserve(Reserve reserve);

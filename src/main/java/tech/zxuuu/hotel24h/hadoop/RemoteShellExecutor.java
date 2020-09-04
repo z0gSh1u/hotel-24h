@@ -57,11 +57,13 @@ public class RemoteShellExecutor {
         out.close();
         session.waitForCondition(ChannelCondition.CLOSED | ChannelCondition.EOF | ChannelCondition.EXIT_STATUS, 30000);
         System.out.println("Here is the output from stdout:");
+        System.out.println("<br>");
         while (true) {
           String line = stdoutReader.readLine();
           if (line == null)
             break;
           System.out.println(line);
+          System.out.println("<br>");
         }
         ret = session.getExitStatus();
         session.close();

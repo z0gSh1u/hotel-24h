@@ -6,8 +6,14 @@
     <title>评论页面</title>
     <script src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
     <script src="http://localhost:8080/js/utils.js"></script>
-    <link rel="stylesheet" href="http://localhost:8080/style/bootstrap.min.css" />
-    <link rel="stylesheet" href="http://localhost:8080/style/comment/newComment.css" />
+    <link
+      rel="stylesheet"
+      href="http://localhost:8080/style/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="http://localhost:8080/style/comment/newComment.css"
+    />
   </head>
   <body>
     <div class="container">
@@ -45,6 +51,34 @@
       </div>
     </div>
 
-    <script src="http://localhost:8080/js/newComment.js"></script>
+    <script>
+      $('#orderId').val(getQueryVariable('orderId') || '')
+      $('#submitBtn').on('click', function () {
+        $.ajax({
+          url: '/comment/add',
+          method: 'POST',
+          data: {
+            orderId: $('#orderId').val(),
+            comment: $('#commentContent').val(),
+          },
+          contentType: 'application/x-www-form-urlencoded',
+          dataType: 'json',
+          success: (data) => {
+            if (data.status == 0) {
+              alert('提交成功！')
+              window.close()
+            } else if (data.status == 1) {
+              alert('重复提交！')
+              window.close()
+            } else if (data.status == 2) {
+              alert('信息有误！')
+            }
+          },
+          error: (error) => {
+            console.log(error)
+          },
+        })
+      })
+    </script>
   </body>
 </html>

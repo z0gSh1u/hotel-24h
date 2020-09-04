@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>大数据智能分析</title>
+    <script src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="http://localhost:8080/style/bootstrap.min.css"
+    />
+    <style>
+      .title {
+        text-align: center;
+      }
+      html {
+        background-color: #eeeeee;
+      }
+      #result {
+        font-size: 30px;
+      }
+      iframe {
+        border: 2px solid black;
+        width: 80%;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      <h1>Hadoop + Wordcount 顾客评价分析系统</h1>
+      <img src="http://localhost:8080/img/analyze.png" />
+      <br />
+      <button
+        class="btn btn-lg btn-primary"
+        style="margin-top: 50px; width: 200px; height: 100px; font-size: 30px"
+        onclick="runNow()"
+      >
+        立即执行
+      </button>
+      <div id="waiting" style="display: none">
+        <img src="http://localhost:8080/img/loading.gif" />
+        <p>请稍等，需要较长时间...</p>
+      </div>
+
+      <div id="result" style="display: none">
+        <p style="font-weight: bold">执行完成</p>
+        正面词语数量：
+        <p id="goodWordCount"></p>
+        正面词语如下：
+        <p id="goodWords"></p>
+        负面词语数量：
+        <p id="badWordCount"></p>
+        负面词语如下：
+        <p id="badWords"></p>
+        <p id="goodResult" style="color: greenyellow; display: none">
+          酒店整体评价趋于正面
+        </p>
+        <p id="badResult" style="color: red; display: none">
+          酒店整体评价趋于负面
+        </p>
+      </div>
+
+      <div id="exec-log" style="display: none">
+        <a href="http://localhost:8080/hadoop_log.html" style="font-size: 20px;">点击查看执行日志</a>
+      </div>
+      <br />
+    </div>
+  </body>
+  <script>
+    function runNow() {
+      $('#waiting').css('display', 'block')
+      $.ajax({
+        url: 'http://localhost:8080/comment/analyze',
+        method: 'GET',
+        contentType: 'json',
+        success: function (data) {
+          data = JSON.parse(data)
+          console.log(data)
+          $('#goodWordCount').text(data.goodWordCount)
+          $('#badWordCount').text(data.badWordCount)
+          $('#goodWords').text(JSON.stringify(data.goodWordSet))
+          $('#badWords').text(JSON.stringify(data.badWordSet))
+          data.goodWordCount >= data.badWordCount &&
+            $('#goodResult').css('display', 'block')
+          data.goodWordCount < data.badWordCount &&
+            $('#badResult').css('display', 'block')
+          $('#waiting').css('display', 'none')
+          $('#result').css('display', 'block')
+            $('#exec-log').css('display', 'block')
+        },
+        error: function (error) {
+          console.log(error)
+        },
+      })
+    }
+  </script>
+</html>

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface CommentService {
-  Integer insertComment(Comment comment);
+  Integer insertComment(Comment comment, String name, String phone);
 
   List<Comment> getAllComment();
 

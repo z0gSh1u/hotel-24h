@@ -28,8 +28,8 @@ public class CommentController {
 
   @PostMapping("/add")
   public @ResponseBody
-  String addComment(@RequestParam("orderId") String orderId, @RequestParam("comment") String comment) {
-    Integer retCode = commentService.insertComment(new Comment(orderId, comment));
+  String addComment(@RequestParam("orderId") String orderId, @RequestParam("comment") String comment, @RequestParam String name, @RequestParam String phone) {
+    Integer retCode = commentService.insertComment(new Comment(orderId, comment), name, phone);
     Map map = new HashMap<String, Object>() {{
       put("status", retCode);
     }};
@@ -68,8 +68,13 @@ public class CommentController {
   @GetMapping("/analyze")
   public @ResponseBody
   String analyzeComment() {
-    commentService.analyzeComment();
-    return "";
+    Map<String, Object> map = commentService.analyzeComment();
+    return JSONUtils.buildJSON(map);
+  }
+
+  @GetMapping("/analyzeView")
+  public String analyzeCommentView() {
+    return "comment/hadoop";
   }
 
 }
