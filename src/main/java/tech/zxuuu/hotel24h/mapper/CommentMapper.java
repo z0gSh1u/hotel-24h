@@ -8,6 +8,8 @@ import tech.zxuuu.hotel24h.entity.Comment;
 
 import java.util.List;
 
+// 评论相关
+
 @Mapper
 public interface CommentMapper {
 

@@ -2,9 +2,7 @@ package tech.zxuuu.hotel24h.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import tech.zxuuu.hotel24h.entity.Room;
 import tech.zxuuu.hotel24h.service.RoomService;
 import tech.zxuuu.hotel24h.util.JSONUtils;
@@ -34,4 +32,15 @@ public class RoomController {
     }};
     return JSONUtils.buildJSON(map);
   }
+
+  @PostMapping("/remove")
+  public @ResponseBody
+  String removeRoom(@RequestParam("roomId") Integer roomId) {
+    Integer retCode = roomService.deleteRoom(roomId);
+    Map map = new HashMap<String, Object>() {{
+      put("status", retCode);
+    }};
+    return JSONUtils.buildJSON(map);
+  }
+
 }

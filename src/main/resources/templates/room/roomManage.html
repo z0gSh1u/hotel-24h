@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>客房管理页面</title>
+    <title>客房管理系统</title>
     <link
       rel="stylesheet"
       href="http://localhost:8080/style/bootstrap.min.css"
@@ -116,12 +116,34 @@
               title: '操作',
               width: 150,
               formatter: (id, row, idx) => {
-                return `<button class="btn btn-danger" onclick="removeComment(${id})">删除</button>`
+                return `<button class="btn btn-danger" onclick="removeRoom(${id})">删除</button>`
               },
             },
           ],
         })
       })
+      function removeRoom(id) {
+        const cfm = confirm(`确认要移除订单号为 ${id} 的评论吗？`)
+        if (cfm) {
+          $.ajax({
+            url: '/room/remove',
+            method: 'POST',
+            data: {
+              roomId: id,
+            },
+            contentType: 'application/x-www-form-urlencoded',
+            dataType: 'json',
+            success: (data) => {
+              console.log(data)
+              alert(['删除成功', '删除失败'][data.status])
+              window.location.href = window.location.href
+            },
+            error: (error) => {
+              console.log(error)
+            },
+          })
+        }
+      }
     </script>
   </body>
 </html>

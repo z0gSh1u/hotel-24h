@@ -11,32 +11,34 @@ import java.util.List;
 @Service
 public class RoomServiceImpl implements RoomService {
 
-    @Autowired
-    private RoomMapper roomMapper;
+  @Autowired
+  private RoomMapper roomMapper;
 
-    @Override
-    public void addRoom(Room room) {
-        this.roomMapper.insertRoom(room);
-    }
+  @Override
+  public void addRoom(Room room) {
+    this.roomMapper.insertRoom(room);
+  }
 
-    @Override
-    public void updateRoom(Room room) {
-        this.roomMapper.updateRoom(room);
-    }
+  @Override
+  public void updateRoom(Room room) {
+    this.roomMapper.updateRoom(room);
+  }
 
-    @Override
-    public List<Room> getAllRooms() {
-        return this.roomMapper.selectAllRooms();
-    }
+  @Override
+  public List<Room> getAllRooms() {
+    return this.roomMapper.selectAllRooms();
+  }
 
-    @Override
-    public String deleteRoom(Integer roomId) {
-        if(this.roomMapper.selectRoomById(roomId) == null){
-            return "此房间号不存在！";
-        }
-        else{
-            this.roomMapper.deleteRoom(roomId);
-            return "删除成功！";
-        }
+  @Override
+  /**
+   * 状态码：1：房间不存在；2：删除成功
+   */
+  public Integer deleteRoom(Integer roomId) {
+    if (this.roomMapper.selectRoomById(roomId) == null) {
+      return 1;
+    } else {
+      this.roomMapper.deleteRoom(roomId);
+      return 0;
     }
+  }
 }

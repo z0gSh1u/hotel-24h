@@ -1,45 +1,42 @@
 package tech.zxuuu.hotel24h.entity;
 
-import java.util.Date;
-
+// 员工类
 public class Emp {
 
-    private String id;
+  private String id; // 员工账号
+  private String password; // 员工密码
+  private String name; // 员工姓名
 
-    private String password;
+  public Emp(String id, String password, String name) {
+    this.id = id;
+    this.password = password;
+    this.name = name;
+  }
 
-    private String name;
+  public Emp() {
+  }
 
-    public Emp(String id, String password, String name) {
-        this.id = id;
-        this.password = password;
-        this.name = name;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public Emp() {
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public String getId() {
-        return id;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 }

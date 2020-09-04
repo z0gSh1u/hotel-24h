@@ -7,18 +7,18 @@ import java.util.List;
 
 @Mapper
 public interface RoomMapper {
-    @Insert("INSERT INTO tb_room VALUE(#{id},#{type},#{price})")
-    void insertRoom(Room room);
+  @Insert("INSERT INTO tb_room VALUE(#{id},#{type},#{price})")
+  void insertRoom(Room room);
 
-    @Select("SELECT * FROM tb_room WHERE roomId = #{id}")
-    Room selectRoomById(Integer roomId);
+  @Select("SELECT * FROM tb_room WHERE roomId = #{id}")
+  Room selectRoomById(Integer roomId);
 
-    @Select("SELECT * FROM tb_room")
-    List<Room> selectAllRooms();
+  @Select("SELECT * FROM tb_room")
+  List<Room> selectAllRooms();
 
-    @Update("UPDATE tb_room SET type=#{type}, price=#{price} WHERE id=#{id} ")
-    void updateRoom(Room room);
+  @Update("UPDATE tb_room SET type=#{type}, price=#{price} WHERE id=#{id} ")
+  void updateRoom(Room room);
 
-    @Delete("DELETE FROM tb_room WHERE roomId = #{id}")
-    void deleteRoom(Integer roomId);
+  @Delete("DELETE FROM tb_room WHERE roomId=#{id}")
+  void deleteRoom(Integer roomId);
 }
