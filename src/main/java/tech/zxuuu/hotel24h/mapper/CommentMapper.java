@@ -23,4 +23,7 @@ public interface CommentMapper {
   @Delete("DELETE FROM tb_comment WHERE id=#{orderId}")
   Boolean removeComment(String orderId);
 
+  @Select("SELECT comment FROM tb_comment ORDER BY id LIMIT 50")
+  List<String> concatRecentComments();
+
 }

@@ -18,20 +18,20 @@ import org.apache.hadoop.io.IOUtils;
  * Java操作HDFS的功能类
  */
 public class HDFSReadWrite {
-  public static void readFromHDFS(String file) throws IOException {
+  public static String readFromHDFS(String file) throws IOException {
     Configuration conf = new Configuration();
     FileSystem fs = FileSystem.get(URI.create(file), conf);
     Path path = new Path(file);
     FSDataInputStream in = fs.open(path);
-
-    String finalContent = "";
-
-    IOUtils.copyBytes(in, finalContent.st8, 4096, true);
-
-
+    byte[] bytes = new byte[0];
+    bytes = new byte[in.available()];
+    in.read(bytes);
+    String str = new String(bytes);
+    return str;
   }
 
-  public static void writeToHDFS(String file, String words) throws IOException, URISyntaxException {
+
+  public static void writeToHDFS(String file, String words) throws IOException {
     Configuration conf = new Configuration();
     FileSystem fs = FileSystem.get(URI.create(file), conf);
     Path path = new Path(file);

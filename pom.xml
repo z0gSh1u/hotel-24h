@@ -20,6 +20,31 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-common</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-smartcn</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-highlighter</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
             <version>2.7.2</version>
@@ -34,13 +59,13 @@
             <artifactId>hadoop-client</artifactId>
             <version>2.7.2</version>
         </dependency>
-        <!--    本依赖仅存放于本地maven repo    -->
-        <!--    见 https://github.com/wks/ik-analyzer    -->
-        <dependency>
-            <groupId>org.wltea.ik-analyzer</groupId>
-            <artifactId>ik-analyzer</artifactId>
-            <version>3.2.8</version>
-        </dependency>
+<!--        &lt;!&ndash;    本依赖仅存放于本地maven repo    &ndash;&gt;-->
+<!--        &lt;!&ndash;    见 https://github.com/wks/ik-analyzer    &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.wltea.ik-analyzer</groupId>-->
+<!--            <artifactId>ik-analyzer</artifactId>-->
+<!--            <version>3.2.8</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -100,6 +125,11 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>tech.zxuuu</groupId>
+            <artifactId>hotel24h</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
