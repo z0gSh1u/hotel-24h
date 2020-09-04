@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface LoginService {
 
-    Emp empLogin(Emp emp);
+    Emp empLogin(String empId, String empPassword);
 
 }

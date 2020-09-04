@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>24小时酒店员工管理系统</title>
+    <base target="_blank" />
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/style/bootstrap.min.css" />
+    <script type="text/javascript" src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/js/jquery.backstretch.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/js/admin.js"></script>
+    <link rel="stylesheet" href="http://localhost:8080/style/emp/empAdmin.css">
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+    <script src="http://localhost:8080/js/bootstrap-table.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <div class="header">
+        <h1 style="font-weight: bold;">管理员界面</h1>
+        <h3>24小时酒店员工管理系统</h3>
+        <button class="btn btn-danger" id="logoutBtn">退出登录</button>
+    </div>
+
+    <div class="myContainer">
+        <br><br>
+        <div class="floatLeft">
+            <h4><b>&nbsp;&nbsp;&nbsp;后台功能集</b></h4>
+            <button class="btn btn-default" onclick="showDiv('selectEmpDiv');">查看员工</button>
+            <br>
+            <button class="btn btn-default" onclick="showDiv('updateEmpDiv');">修改员工</button>
+            <br>
+            <button class="btn btn-default" onclick="showDiv('insertEmpDiv');">新增员工</button>
+            <br>
+            <button class="btn btn-default" onclick="showDiv('deleteEmpDiv');">删除员工</button>
+        </div>
+
+        <div class="floatRight" id="selectEmpDiv">
+            <h3>当前页面：<b>查看员工</b></h3>
+            <br />
+            <p>员工账号</p>
+            <input id="selectEmpId" placeholder="账号" class="input-lg" style="margin: 3px 0 15px 0"/>
+            <br>
+            <p>员工姓名</p>
+            <input id="selectEmpName" placeholder="姓名" class="input-lg" style="margin: 3px 0 15px 0" />
+            <br>
+            <button class="btn btn-primary" onclick="deleteEmp();">查 找</button>
+            <table id="selectEmpTable"></table>
+        </div>
+
+        <div class='floatRight' id="updateEmpDiv" style="display: none">
+            <h3>当前页面：<b>修改员工</b></h3>
+            <br />
+            <p>定位用户：</p>
+            <p>员工账号（必填）</p>
+            <input id="updateEmpId" placeholder="账号" class="input-lg" style="margin: 3px 0 15px 0"/>
+            <br>
+            <p>信息维护（不修改的不填）：</p>
+            <p>员工姓名</p>
+            <input id="updateEmpName" placeholder="姓名" class="input-lg" style="margin: 3px 0 15px 0" />
+            <br>
+            <button class="btn btn-primary" onclick="updateEmp();">确 认</button>
+        </div>
+
+        <div class='floatRight' id="insertEmpDiv" style="display: none">
+            <h3>当前页面：<b>新增员工</b></h3>
+            <br />
+            <p>新员工账号</p>
+            <input id="insertEmpId" placeholder="账号" class="input-lg" style="margin: 3px 0 15px 0"/>
+            <br>
+            <p>新员工密码</p>
+            <input id="insertEmpPwd" placeholder="密码" class="input-lg" type="password" style="margin: 3px 0 15px 0"/>
+            <br>
+            <p>确认密码</p>
+            <input id="insertEmpPwdAgain" placeholder="确认密码" class="input-lg" type="password" style="margin: 3px 0 15px 0"/>
+            <br>
+            <p>新员工姓名</p>
+            <input id="insertEmpName" placeholder="姓名" class="input-lg" style="margin: 3px 0 15px 0" />
+            <br>
+            <button class="btn btn-primary" onclick="insertEmp();">确 认</button>
+
+        </div>
+
+        <div class='floatRight' id="deleteEmpDiv" style="display: none">
+            <h3>当前页面：<b>删除员工</b></h3>
+            <br />
+
+            <p>员工账号</p>
+            <input id="deleteEmpId" placeholder="账号" class="input-lg" style="margin: 3px 0 15px 0"/>
+            <br>
+            <p>员工姓名</p>
+            <input id="deleteEmpName" placeholder="姓名" class="input-lg" style="margin: 3px 0 15px 0" />
+            <br>
+            <p>管理员密码</p>
+            <input id="adminPwd" placeholder="管理员密码" class="input-lg" type="password" style="margin: 3px 0 15px 0"/>
+            <br>
+            <button class="btn btn-primary" onclick="deleteEmp();">确 认</button>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

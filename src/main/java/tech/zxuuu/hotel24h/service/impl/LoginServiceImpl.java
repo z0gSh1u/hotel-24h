@@ -15,8 +15,8 @@ public class LoginServiceImpl implements LoginService {
     private EmpMapper empMapper;
 
     @Override
-    public Emp empLogin(Emp emp) {
-        List<Emp> emps = this.empMapper.selectEmpWhenLogin(emp);
+    public Emp empLogin(String empId, String empPassword) {
+        List<Emp> emps = this.empMapper.selectEmpWhenLogin(empId, empPassword);
         if (emps.isEmpty() || emps.size() > 1) {
             return null;
         } else {

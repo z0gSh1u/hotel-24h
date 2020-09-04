@@ -4,42 +4,42 @@ import java.util.Date;
 
 public class Emp {
 
-    private String empId;
+    private String id;
 
-    private String empName;
+    private String password;
 
-    private String empPassword;
+    private String name;
 
-    public Emp(String empId, String empName, String empPassword) {
-        this.empId = empId;
-        this.empName = empName;
-        this.empPassword = empPassword;
+    public Emp(String id, String password, String name) {
+        this.id = id;
+        this.password = password;
+        this.name = name;
     }
 
     public Emp() {
     }
 
-    public String getEmpId() {
-        return empId;
+    public String getId() {
+        return id;
     }
 
-    public void setEmpId(String empId) {
-        this.empId = empId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getEmpName() {
-        return empName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmpName(String empName) {
-        this.empName = empName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getEmpPassword() {
-        return empPassword;
+    public String getName() {
+        return name;
     }
 
-    public void setEmpPassword(String empPassword) {
-        this.empPassword = empPassword;
+    public void setName(String name) {
+        this.name = name;
     }
 }
