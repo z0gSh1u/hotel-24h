@@ -33,7 +33,4 @@ public class CommentController {
     return JSONUtils.buildJSON(map);
   }
 
-  @PostMapping("/comment/list")
-  public @ResponseBody String listComment(@reque)
-
 }
