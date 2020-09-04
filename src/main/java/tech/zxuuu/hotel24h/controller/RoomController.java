@@ -17,22 +17,21 @@ import java.util.Map;
 @RequestMapping("/room")
 public class RoomController {
 
-    @Autowired
-    RoomService roomService;
+  @Autowired
+  RoomService roomService;
 
-    @GetMapping("/listView")
-    public String listRoomView() {
-        return "KeFangGuanLi";
-    }
+  @GetMapping("/listView")
+  public String listRoomView() {
+    return "room/KeFangGuanLi";
+  }
 
-    @GetMapping("/list")
-    public @ResponseBody
-    String listRoom(){
-        List<Room> rooms = roomService.getAllRooms();
-        Map map = new HashMap<String,Object>(){{
-            put("status",1);
-            put("data", rooms);
-        }};
-        return JSONUtils.buildJSON(map);
-    }
+  @GetMapping("/list")
+  public @ResponseBody
+  String listRoom() {
+    List<Room> rooms = roomService.getAllRooms();
+    Map map = new HashMap<String, Object>() {{
+      put("data", rooms);
+    }};
+    return JSONUtils.buildJSON(map);
+  }
 }

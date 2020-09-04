@@ -1,26 +1,16 @@
-
-
-
 function processNewRoom() {
-    const roomId = $('#roomNoInput').val()
+  const roomId = $('#roomNoInput').val()
 
-    $.ajax()
+  $.ajax()
 }
 
-
 $('#newRoomModal').on('shown.bs.modal', function (event) {
-    console.log(event)
-    var modal = $(this)
+  console.log(event)
+  var modal = $(this)
 
-    const roomTypes = [
-        "ROMA", "ROMB"
-    ]
-    roomTypes.forEach(v => {
-        console.log( modal.find('#roomTypeSelect'))
-        modal.find('#roomTypeSelect').append(`<option value="${v}">${v}</option>`)
-    })
+  const roomTypes = ['ROMA', 'ROMB']
+  roomTypes.forEach((v) => {
+    console.log(modal.find('#roomTypeSelect'))
+    modal.find('#roomTypeSelect').append(`<option value="${v}">${v}</option>`)
   })
-
-
-
-
+})

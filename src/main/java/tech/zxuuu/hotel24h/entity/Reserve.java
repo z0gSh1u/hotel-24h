@@ -1,73 +1,36 @@
-
+package tech.zxuuu.hotel24h.entity;
 import java.util.Date;
 
+// 房间预订记录类
 public class Reserve {
-    private String id;
-    private Integer roomId;
-    private Date startDate;
-    private Date endDate;
-    private String reserverName;
-    private String reserverPhone;
-    private Integer status;
+    private String id; // 订单号
+    private Integer roomId; // 房间号
+    private Date startDate; // 开始时间
+    private Date endDate; // 结束时间
+    private String reserverName; // 预订人姓名
+    private String reserverPhone; // 预订人电话
+    private Integer status; // 状态，0：预定还没来；1：预定了在住；2：已退房未评论；3：已退房已评论
 
-    public Reserve() {
-    }
-
-    public Reserve(String id, Integer roomId, Date startDate, Date endDate, String reserverName, String reserverPhone, Integer status) {
-        this.id = id;
-        this.roomId = roomId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.reserverName = reserverName;
-        this.reserverPhone = reserverPhone;
-        this.status = status;
+    @Override
+    public String toString() {
+        return "Reserve{" +
+          "id='" + id + '\'' +
+          ", roomId=" + roomId +
+          ", startDate=" + startDate +
+          ", endDate=" + endDate +
+          ", reserverName='" + reserverName + '\'' +
+          ", reserverPhone='" + reserverPhone + '\'' +
+          ", status=" + status +
+          '}';
     }
 
     public String getId() {
         return id;
     }
 
-
-    @Override
-    public String toString() {
-        return "Reserve{" +
-                "id='" + id + '\'' +
-                ", roomId=" + roomId +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", reserverName='" + reserverName + '\'' +
-                ", reserverPhone='" + reserverPhone + '\'' +
-                ", status=" + status +
-                '}';
-    }
-
-
     public void setId(String id) {
         this.id = id;
     }
-
-
-    public String getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
 
     public Integer getRoomId() {
         return roomId;
@@ -90,7 +53,6 @@ public class Reserve {
     }
 
     public void setEndDate(Date endDate) {
-
         this.endDate = endDate;
     }
 
@@ -102,21 +64,12 @@ public class Reserve {
         this.reserverName = reserverName;
     }
 
-
-    public Integer getReservePhone() {
-        return reserverPhone;
-    }
-
-    public void setReservePhone(Integer reservePhone) {
-        this.reserverPhone = reservePhone;
-
     public String getReserverPhone() {
         return reserverPhone;
     }
 
     public void setReserverPhone(String reserverPhone) {
         this.reserverPhone = reserverPhone;
-
     }
 
     public Integer getStatus() {
@@ -127,19 +80,18 @@ public class Reserve {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Reserve{" +
-                "id='" + id + '\'' +
-                ", roomId='" + roomId + '\'' +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                ", reserverName='" + reserverName + '\'' +
-                ", reservePhone=" + reserverPhone +
-                ", status=" + status +
-                '}';
+    public Reserve() {
     }
 
+    public Reserve(String id, Integer roomId, Date startDate, Date endDate, String reserverName, String reserverPhone, Integer status) {
+        this.id = id;
+        this.roomId = roomId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.reserverName = reserverName;
+        this.reserverPhone = reserverPhone;
+        this.status = status;
+    }
 }
 
 

@@ -1,53 +1,50 @@
 package tech.zxuuu.hotel24h.entity;
 
-import javax.annotation.sql.DataSourceDefinition;
-
+// 房间类
 public class Room {
-    private Integer id;
+  private Integer id; // 房号
+  private String type; // 房间类型，请查看对照表
+  private Integer price; // 房间价格
 
-    private String type;
+  public Room(Integer id, String type, Integer price) {
+    this.id = id;
+    this.type = type;
+    this.price = price;
+  }
 
-    private Integer price;
+  public Room() {
+  }
 
-    public Room(Integer id, String type, Integer price) {
-        this.id = id;
-        this.type = type;
-        this.price = price;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public Room() {
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-    public String getType() {
-        return type;
-    }
+  public Integer getPrice() {
+    return price;
+  }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public void setPrice(Integer price) {
+    this.price = price;
+  }
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Room{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", price=" + price +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Room{" +
+      "id=" + id +
+      ", type='" + type + '\'' +
+      ", price=" + price +
+      '}';
+  }
 }
