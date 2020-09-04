@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tech.zxuuu.hotel24h.entity.Reserve;
 import tech.zxuuu.hotel24h.service.CheckService;
+import tech.zxuuu.hotel24h.util.JSONUtils;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(path = "/check")
@@ -18,16 +22,46 @@ public class CheckController {
     private CheckService checkService;
 
     @GetMapping(path="/preCheck")
-    public String PreCheck(Model model, Reserve reserve){
-        model.addAttribute("reserve",reserve);
-        return "CheckService";
+    public String preCheck(){
+        return "check/preCheck";
+    }
+
+    @RequestMapping("/list")
+    @ResponseBody
+    public String reservationList(@RequestParam("id") String id,@RequestParam("reserverName") String reserverName,@RequestParam("reserverPhone") String reserverPhone){
+        Reserve reserve = new Reserve();
+        reserve.setId(id);
+        reserve.setReserverName(reserverName);
+        reserve.setReserverPhone(reserverPhone);
+        List<Reserve> reserves=checkService.selectAll(reserve);
+        Map map = new HashMap<String,Object>(){{
+            put("status",1);
+            put("data",reserves);
+        }};
+        return JSONUtils.buildJSON(map);
     }
 
     @RequestMapping(path="/checkIn")
     @ResponseBody
-    public String checkIn(@RequestParam Reserve reserve){
-        System.out.println();
+    public String checkIn(@RequestParam("id") String id,@RequestParam("reserverName") String reserverName,@RequestParam("reserverPhone") String reserverPhone){
+        Reserve reserve=new Reserve();
+        reserve.setId(id);
+        reserve.setReserverName(reserverName);
+        reserve.setReserverPhone(reserverPhone);
+        System.out.println(reserve);
         String result= this.checkService.checkIn(reserve);
+        return result;
+    }
+
+    @RequestMapping(path="/checkOut")
+    @ResponseBody
+    public String checkOut(@RequestParam("id") String id,@RequestParam("reserverName") String reserverName,@RequestParam("reserverPhone") String reserverPhone){
+        Reserve reserve=new Reserve();
+        reserve.setId(id);
+        reserve.setReserverName(reserverName);
+        reserve.setReserverPhone(reserverPhone);
+        System.out.println(reserve);
+        String result= this.checkService.checkOut(reserve);
         return result;
     }
 }

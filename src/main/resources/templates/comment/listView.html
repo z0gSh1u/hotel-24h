@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>评论列表页面</title>
+    <script src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
+    <script src="http://localhost:8080/js/bootstrap-table.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="http://localhost:8080/style/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="http://localhost:5500/static/style/comment/listComment.css"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <p class="title">住客评论内容列表</p>
+    </div>
+    <table id="commentTable"></table>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $('#commentTable').bootstrapTable({
+        ajax: function (request) {
+          $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/comment/list',
+            contentType: 'application/x-www-form-urlencoded',
+            dataType: 'json',
+            success: function (res) {
+              request.success({
+                row: res.data,
+              })
+              $('#commentTable').bootstrapTable('load', res.data)
+            },
+            error: function (error) {
+              console.log(error)
+            },
+          })
+        },
+        striped: true,
+        pageNumber: 1,
+        pagination: true,
+        sidePagination: 'client',
+        pageSize: 10,
+        columns: [
+          {
+            title: '订单号',
+            field: 'id',
+          },
+          {
+            title: '评论内容',
+            field: 'comment',
+          },
+          {
+            field: 'id',
+            title: '操作',
+            width: 150,
+            formatter: (id, row, idx) => {
+              return `<button class="btn btn-danger" onclick="removeComment(${id})">删除</button>`
+            },
+          },
+        ],
+      })
+    })
+    function removeComment(id) {
+      const cfm = confirm(`确认要移除订单号为 ${id} 的评论吗？`)
+      if (cfm) {
+        $.ajax({
+          url: '/comment/remove',
+          method: 'POST',
+          data: {
+            orderId: id,
+          },
+          contentType: 'application/x-www-form-urlencoded',
+          dataType: 'json',
+          success: (data) => {
+            console.log(data)
+            alert(['删除成功', '删除失败'][data.status])
+            window.location.href = window.location.href
+          },
+          error: (error) => {
+            console.log(error)
+          },
+        })
+      }
+    }
+  </script>
+</html>

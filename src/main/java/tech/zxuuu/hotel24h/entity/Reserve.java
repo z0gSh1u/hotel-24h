@@ -7,9 +7,43 @@ public class Reserve {
     private Integer roomId;
     private Date startDate;
     private Date endDate;
-    private String reserveName;
-    private String reservePhone;
+    private String reserverName;
+    private String reserverPhone;
     private Integer status;
+
+    public Reserve() {
+    }
+
+    public Reserve(String id, Integer roomId, Date startDate, Date endDate, String reserverName, String reserverPhone, Integer status) {
+        this.id = id;
+        this.roomId = roomId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.reserverName = reserverName;
+        this.reserverPhone = reserverPhone;
+        this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Reserve{" +
+                "id='" + id + '\'' +
+                ", roomId=" + roomId +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", reserverName='" + reserverName + '\'' +
+                ", reserverPhone='" + reserverPhone + '\'' +
+                ", status=" + status +
+                '}';
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Integer getRoomId() {
         return roomId;
@@ -17,38 +51,6 @@ public class Reserve {
 
     public void setRoomId(Integer roomId) {
         this.roomId = roomId;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getReserveName() {
-        return reserveName;
-    }
-
-    public void setReserveName(String reserveName) {
-        this.reserveName = reserveName;
-    }
-
-    public String getReservePhone() {
-        return reservePhone;
-    }
-
-    public void setReservePhone(String reservePhone) {
-        this.reservePhone = reservePhone;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public Date getStartDate() {
@@ -59,11 +61,37 @@ public class Reserve {
         this.startDate = startDate;
     }
 
-    public String getId() {
-        return id;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getReserverName() {
+        return reserverName;
+    }
+
+    public void setReserverName(String reserverName) {
+        this.reserverName = reserverName;
+    }
+
+    public String getReserverPhone() {
+        return reserverPhone;
+    }
+
+    public void setReserverPhone(String reserverPhone) {
+        this.reserverPhone = reserverPhone;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
+
+
