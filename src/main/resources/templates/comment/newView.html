@@ -31,7 +31,7 @@
           </div>
           <div class="form-inline">
             <label for="phone">手机号：</label>
-            <input type="text" class="form-control" id="phone" />
+            <input type="number" class="form-control" id="phone" />
           </div>
         </div>
 
@@ -60,6 +60,8 @@
           data: {
             orderId: $('#orderId').val(),
             comment: $('#commentContent').val(),
+            name: $('#name').val(),
+            phone: $('#phone').val()
           },
           contentType: 'application/x-www-form-urlencoded',
           dataType: 'json',
@@ -71,7 +73,7 @@
               alert('重复提交！')
               window.close()
             } else if (data.status == 2) {
-              alert('信息有误！')
+              alert('信息有误！请检查姓名、手机号、是否已退房。')
             }
           },
           error: (error) => {

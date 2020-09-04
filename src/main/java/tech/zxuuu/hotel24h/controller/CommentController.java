@@ -56,7 +56,7 @@ public class CommentController {
   @PostMapping("/remove")
   public @ResponseBody
   String removeComment(@RequestParam("orderId") String orderId) {
-    System.out.println("got ser");
+    System.out.println("got dser");
     Integer retCode = commentService.removeComment(orderId);
     Map map = new HashMap<String, Object>() {{
       put("status", retCode);

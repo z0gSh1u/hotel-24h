@@ -33,7 +33,7 @@ public class CommentServiceImpl implements CommentService {
   public Integer insertComment(Comment comment, String name, String phone) {
     // 信息错误
     Reserve reserve = reserveMapper.selectReserveById(comment.getId());
-    if (reserve == null || !reserve.getReserverName().equals(name) || !reserve.getReserverPhone().equals(phone)) {
+    if (reserve == null || !reserve.getReserverName().equals(name) || !reserve.getReserverPhone().equals(phone) || !reserve.getStatus().equals(3)) {
       return 2;
     }
     // 重复提交错误
