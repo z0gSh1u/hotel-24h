@@ -4,14 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link rel="stylesheet" href="http://localhost:8080/style/bootstrap.min.css" />
+    <script src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
+
     <title>新增预定页面</title>
-    <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./style/newComment.css" />
+
 </head>
 <body>
 <div class="container">
@@ -19,19 +16,26 @@
 
     <div class="body">
         <div class="basicInfo">
+            <label>请输入您想要预定的时间段:</label>
+            <br />
+            <label for="startDate">
+                开始时间：
+                <input type="date" id="startDate">
+            </label>
+            <label for="endDate">
+                结束时间：
+                <input type="date" id="endDate">
+            </label>
+            <br/>
+            <br />
+            <label for="roomId">房&nbsp&nbsp号</label>
+            <input type="text" id="roomId">
+            </select>
+
             <br />
             <label for="name">
                 姓&nbsp;&nbsp;&nbsp;名：
                 <input type="text" id="name" />
-            </label>
-            <br />
-            <label for="startDate">
-                开始时间：
-                <input type="text" id="startDate" />
-            </label>
-            <label for="endDate">
-                结束时间：
-                <input type="text" id="endDate" />
             </label>
             <br />
             <label for="phone">
@@ -39,25 +43,34 @@
                 <input type="text" id="phone" />
             </label>
         </div>
-        <button id="submit2">提交</button>
+        <button id="submit1">提交</button>
+
+        <br />
+        <button id="submit2">管理员查看所有预定信息</button>
     </div>
 </div>
 <script type="text/javascript">
-     $('#submit2').on('click',function(){
+
+    $('#submit2').on('click', function () {
+        window.location.href = '/reserve/preShowAll'
+    })
+     $('#submit1').on('click',function(){
             console.log({
-                name: $('#name').val(),
+                roomId:$('#roomId').val(),
+                reserveName: $('#name').val(),
                 startDate: $('#startDate').val(),
                 endDate: $('#endDate').val(),
-                phone: $('#phone').val(),
+                reservePhone: $('#phone').val(),
             })
             $.ajax({
-                url:'/reserve/preAdd',
+                url:'/reserve/add',
                 method:'POST',
                 data:{
-                    name: $('#name').val(),
+                    roomId:$('#roomId').val(),
+                    reserverName: $('#name').val(),
                     startDate: $('#startDate').val(),
                     endDate: $('#endDate').val(),
-                    phone: $('#phone').val(),
+                    reservePhone: $('#phone').val(),
                 },
                 contentType:"application/x-www-form-urlencoded",
                 dataType:"json",
@@ -70,5 +83,7 @@
             })
         })
 </script>
+
+
 </body>
 </html>

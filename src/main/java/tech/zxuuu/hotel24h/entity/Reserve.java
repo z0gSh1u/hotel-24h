@@ -12,6 +12,7 @@ public class Reserve {
     private Integer reserverPhone;
     private Integer status;
 
+    public Reserve(){};
     public Reserve(String id, String roomId, String startDate, String endDate, String reserverName,
                    Integer reserverPhone, Integer status) {
         this.id = id;

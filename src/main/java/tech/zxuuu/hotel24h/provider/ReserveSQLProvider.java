@@ -5,7 +5,7 @@ import tech.zxuuu.hotel24h.entity.Reserve;
 
 public class ReserveSQLProvider {
 
-    public String selectAllSQl(Reserve reserve){
+    public String selectAllSQl(){
         return new SQL(){{
             SELECT("id,room_id,name,start_date,end_date," +
                             "reserver_name,reserver_phone,status");
