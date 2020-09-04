@@ -3,10 +3,10 @@ package tech.zxuuu.hotel24h.entity;
 // 房间类
 public class Room {
   private Integer id; // 房号
-  private String type; // 房间类型，请查看对照表
+  private Integer type; // 房间类型，请查看对照表
   private Integer price; // 房间价格
 
-  public Room(Integer id, String type, Integer price) {
+  public Room(Integer id, Integer type, Integer price) {
     this.id = id;
     this.type = type;
     this.price = price;
@@ -23,11 +23,11 @@ public class Room {
     this.id = id;
   }
 
-  public String getType() {
+  public Integer getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(Integer type) {
     this.type = type;
   }
 

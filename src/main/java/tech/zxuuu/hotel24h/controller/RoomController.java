@@ -20,7 +20,8 @@ public class RoomController {
 
   @GetMapping("/listView")
   public String listRoomView() {
-    return "room/KeFangGuanLi";
+
+    return "room/roomManage";
   }
 
   @GetMapping("/list")
@@ -42,5 +43,29 @@ public class RoomController {
     }};
     return JSONUtils.buildJSON(map);
   }
+
+  @PostMapping("/add")
+  public @ResponseBody
+  String removeRoom(@RequestParam("roomId") Integer roomId, @RequestParam("roomType") Integer roomType, @RequestParam("roomPrice") Integer roomPrice) {
+    Room room = new Room(roomId, roomType, roomPrice);
+    Integer retCode = roomService.addRoom(room);
+    Map map = new HashMap<String, Object>() {{
+      put("status", retCode);
+    }};
+    return JSONUtils.buildJSON(map);
+  }
+
+  @PostMapping("/modify")
+  public @ResponseBody
+  String modifyRoom(@RequestParam("roomId") Integer roomId, @RequestParam("roomType") Integer roomType, @RequestParam("roomPrice") Integer roomPrice) {
+    Room room = new Room(roomId, roomType, roomPrice);
+    System.out.println("okdone");
+    Integer retCode = roomService.updateRoom(room);
+    Map map = new HashMap<String, Object>() {{
+      put("status", retCode);
+    }};
+    return JSONUtils.buildJSON(map);
+  }
+
 
 }

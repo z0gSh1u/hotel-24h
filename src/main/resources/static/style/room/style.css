@@ -1,6 +1,6 @@
 .container {
   width: 70%;
-  height: 500px;
+  height: 700px;
   background-color: #f0f0f0;
 }
 .container .title {
@@ -9,9 +9,10 @@
   font-size: 30px;
   text-align: center;
 }
-.container #orderId {
-  width: 300px;
-}
 .body {
   margin: 0 auto;
+}
+.bootstrap-table {
+  margin-top: 15px;
+  font-size: 22px;
 }

@@ -10,7 +10,7 @@ public interface RoomMapper {
   @Insert("INSERT INTO tb_room VALUE(#{id},#{type},#{price})")
   void insertRoom(Room room);
 
-  @Select("SELECT * FROM tb_room WHERE roomId = #{id}")
+  @Select("SELECT * FROM tb_room WHERE id=#{id}")
   Room selectRoomById(Integer roomId);
 
   @Select("SELECT * FROM tb_room")
@@ -19,6 +19,6 @@ public interface RoomMapper {
   @Update("UPDATE tb_room SET type=#{type}, price=#{price} WHERE id=#{id} ")
   void updateRoom(Room room);
 
-  @Delete("DELETE FROM tb_room WHERE roomId=#{id}")
+  @Delete("DELETE FROM tb_room WHERE id=#{id}")
   void deleteRoom(Integer roomId);
 }

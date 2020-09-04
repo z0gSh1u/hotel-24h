@@ -15,18 +15,27 @@ public class RoomServiceImpl implements RoomService {
   private RoomMapper roomMapper;
 
   @Override
-  public void addRoom(Room room) {
-    this.roomMapper.insertRoom(room);
+  /**
+   * 状态码：0：成功添加；1：房间重复
+   */
+  public Integer addRoom(Room room) {
+    Room roomTest = roomMapper.selectRoomById(room.getId());
+    if (roomTest != null) {
+      return 1;
+    }
+    roomMapper.insertRoom(room);
+    return 0;
   }
 
   @Override
-  public void updateRoom(Room room) {
-    this.roomMapper.updateRoom(room);
+  public Integer updateRoom(Room room) {
+    roomMapper.updateRoom(room);
+    return 0;
   }
 
   @Override
   public List<Room> getAllRooms() {
-    return this.roomMapper.selectAllRooms();
+    return roomMapper.selectAllRooms();
   }
 
   @Override
@@ -34,10 +43,10 @@ public class RoomServiceImpl implements RoomService {
    * 状态码：1：房间不存在；2：删除成功
    */
   public Integer deleteRoom(Integer roomId) {
-    if (this.roomMapper.selectRoomById(roomId) == null) {
+    if (roomMapper.selectRoomById(roomId) == null) {
       return 1;
     } else {
-      this.roomMapper.deleteRoom(roomId);
+      roomMapper.deleteRoom(roomId);
       return 0;
     }
   }
