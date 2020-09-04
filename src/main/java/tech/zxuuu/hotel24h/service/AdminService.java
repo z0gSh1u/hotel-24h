@@ -16,4 +16,6 @@ public interface AdminService {
 
     Boolean deleteEmp(String empId, String empName);
 
+    void changeAdminPwd(String password);
+
 }

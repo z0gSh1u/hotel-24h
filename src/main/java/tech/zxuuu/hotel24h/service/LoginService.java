@@ -8,4 +8,6 @@ public interface LoginService {
 
     Emp empLogin(String empId, String empPassword);
 
+    void changePwd(String empId, String newPwd);
+
 }

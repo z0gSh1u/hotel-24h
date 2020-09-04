@@ -23,4 +23,7 @@ public interface EmpMapper {
 
     @Delete("DELETE FROM tb_emp WHERE id = #{empId} AND name = #{empName} AND id <> 'admin' ")
     Integer deleteEmp(String empId, String empName);
+
+    @Update("UPDATE tb_emp SET password = #{password} WHERE id = 'admin'")
+    void changeAdminPwd(String password);
 }

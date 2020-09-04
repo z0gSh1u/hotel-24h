@@ -9,6 +9,7 @@ public class EmpSQLProvider {
         return new SQL(){{
             SELECT("id, name");
             FROM("tb_emp");
+            WHERE("id <> 'admin'");
             if (emp.getId() != "") {
                 WHERE("id = #{id}");
             }
@@ -23,6 +24,9 @@ public class EmpSQLProvider {
             UPDATE("tb_emp");
             if (emp.getName() != "") {
                 SET("name = #{name}");
+            }
+            if (emp.getPassword() != "") {
+                SET("password = #{password}");
             }
             WHERE("id = #{id} AND id <> 'admin'");
         }}.toString();

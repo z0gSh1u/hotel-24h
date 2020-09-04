@@ -7,17 +7,12 @@
     window.location.href="oldbrowser.html";
 </script>
 <![endif]-->
-<!--[if lte IE 8]>
-<script type="text/javascript">
-    window.location.href="index-ie8.php";
-</script>
-<![endif]-->
 
 <head>
     <link rel="icon" href="favicon.ico" />
     <title> 酒店管理系统 </title>
     <base target="_blank" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css" />
     <script type="text/javascript" src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="http://localhost:8080/js/jquery.backstretch.min.js"></script>
     <script type="text/javascript" src="http://localhost:8080/js/bootstrap.min.js"></script>
@@ -59,6 +54,10 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" class="btn btn-default" style="font-size: 18px;" onclick="clearLogin();">
                 清  空
+            </button>
+
+            <button type="button" class="btn btn-default" style="font-size: 18px;" onclick="window.location.href = 'changePwdPage';">
+                修改密码
             </button>
             <script type="text/javascript">
                 SliderBar("slideBar", options);

@@ -39,4 +39,9 @@ public class AdminServiceImpl implements AdminService {
         return empMapper.deleteEmp(empId, empName) > 0;
     }
 
+    @Override
+    public void changeAdminPwd(String password) {
+        empMapper.changeAdminPwd(password);
+    }
+
 }

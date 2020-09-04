@@ -1,5 +1,6 @@
 package tech.zxuuu.hotel24h.controller;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public class LoginController {
     private LoginService loginService;
 
     @GetMapping(path = "")
-    public String turnToLoginPage() {return "emp/admin";}
+    public String turnToLoginPage() {return "emp/login";}
 
     @PostMapping(path = "/login")
     public @ResponseBody String login(@RequestParam String empId, @RequestParam String empPassword) {
@@ -38,4 +39,19 @@ public class LoginController {
         }
         return JSONUtils.buildJSON(map);
     }
+
+    @PostMapping(path = "/changePwd")
+    public @ResponseBody String changePwd(@RequestParam String empId, @RequestParam String empPwd, @RequestParam String newEmpPwd) {
+        Map map = new HashMap<String, Boolean>();
+        if (this.loginService.empLogin(empId, empPwd) == null) {
+            map.put("isOk", false);
+        } else {
+            this.loginService.changePwd(empId, newEmpPwd);
+            map.put("isOk", true);
+        }
+        return JSONUtils.buildJSON(map);
+    }
+
+    @GetMapping(path = "/changePwdPage")
+    public String turnToChangePwdPage() {return "emp/changePwd";}
 }

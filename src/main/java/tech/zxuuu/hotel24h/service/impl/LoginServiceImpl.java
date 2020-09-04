@@ -24,4 +24,9 @@ public class LoginServiceImpl implements LoginService {
         }
     }
 
+    @Override
+    public void changePwd(String empId, String newPwd) {
+        empMapper.updateEmp(new Emp(empId, newPwd, ""));
+    }
+
 }

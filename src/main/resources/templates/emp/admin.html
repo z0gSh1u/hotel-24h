@@ -36,6 +36,8 @@
             <button class="btn btn-default" onclick="showDiv('insertEmpDiv');">新增员工</button>
             <br>
             <button class="btn btn-default" onclick="showDiv('deleteEmpDiv');">删除员工</button>
+            <br>
+            <button class="btn btn-default" onclick="showDiv('changeAdminPwdDiv');">修改管理员密码</button>
         </div>
 
         <div class="floatRight" id="selectEmpDiv">
@@ -47,7 +49,8 @@
             <p>员工姓名</p>
             <input id="selectEmpName" placeholder="姓名" class="input-lg" style="margin: 3px 0 15px 0" />
             <br>
-            <button class="btn btn-primary" onclick="deleteEmp();">查 找</button>
+            <button class="btn btn-primary" onclick="selectEmp();">查 找</button>
+            <button class="btn btn-primary" onclick="clearSelect();">清空</button>
             <table id="selectEmpTable"></table>
         </div>
 
@@ -98,6 +101,23 @@
             <input id="adminPwd" placeholder="管理员密码" class="input-lg" type="password" style="margin: 3px 0 15px 0"/>
             <br>
             <button class="btn btn-primary" onclick="deleteEmp();">确 认</button>
+
+        </div>
+
+        <div class='floatRight' id="changeAdminPwdDiv" style="display: none">
+            <h3>当前页面：<b>修改管理员密码</b></h3>
+            <br />
+
+            <p>原管理员密码</p>
+            <input id="oldAdminPwd" placeholder="原管理员密码" class="input-lg" type="password" style="margin: 3px 0 15px 0"/>
+            <br>
+            <p>新管理员密码</p>
+            <input id="newAdminPwd" placeholder="新管理员密码" class="input-lg" type="password" style="margin: 3px 0 15px 0" />
+            <br>
+            <p>新管理员密码确认</p>
+            <input id="newAdminPwdAgain" placeholder="新管理员密码确认" class="input-lg" type="password" style="margin: 3px 0 15px 0"/>
+            <br>
+            <button class="btn btn-primary" onclick="changeAdminPwd();">确 认</button>
 
         </div>
 

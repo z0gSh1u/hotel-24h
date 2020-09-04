@@ -17,11 +17,12 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/admin/select")
-    public String selectEmp(@RequestParam String empId, @RequestParam String empName) {
+    @PostMapping("/admin/select")
+    public @ResponseBody String selectEmp(@RequestParam String empId, @RequestParam String empName) {
         Map map = new Hashtable<String, Object>(){{
             put("list", adminService.queryEmp(new Emp(empId, "", empName)));
         }};
+        System.out.println("here");
         return JSONUtils.buildJSON(map);
     }
 
@@ -63,4 +64,17 @@ public class AdminController {
         }
         return JSONUtils.buildJSON(map);
     }
+
+    @PostMapping("/admin/changePwd")
+    public @ResponseBody String changeAdminPwd(@RequestParam String oldAdminPwd, @RequestParam String newAdminPwd) {
+        Map map = new HashMap<String, Boolean>();
+        if (!adminService.verifyAdmin(oldAdminPwd)) {
+            map.put("isOk", false);
+        } else {
+            adminService.changeAdminPwd(newAdminPwd);
+            map.put("isOk", true);
+        }
+        return JSONUtils.buildJSON(map);
+    }
+
 }
