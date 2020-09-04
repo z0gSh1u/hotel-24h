@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="http://localhost:8080/style/bootstrap.min.css"
+    />
+    <script src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
+    <title>新增预定页面</title>
+
+    <style>
+      .title {
+        text-align: center;
+      }
+      .step {
+        margin-bottom: 15px;
+        margin-top: 15px;
+        display: none;
+      }
+      .visiable-step {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      <h2>24h酒店欢迎您的预定</h2>
+      <a href="./preShowAll">查看预定列表</a>
+    </div>
+    <hr />
+    <div class="container">
+      <div class="step step1 visiable-step">
+        <p>STEP 1 - 请选择您想要预定的时间段：</p>
+        <label for="startDate">
+          开始时间：
+          <input type="date" id="startDate" />
+        </label>
+        <label for="endDate">
+          结束时间：
+          <input type="date" id="endDate" />
+        </label>
+        <button id="step1Btn" onclick="queryReservableRooms()">
+          查询空余房间
+        </button>
+      </div>
+
+      <div class="step step2">
+        <p>STEP 2 - 请选择要预定的房号：</p>
+        <label for="roomId">房号</label>
+        <select id="roomIdSelect"></select>
+      </div>
+
+      <div class="step step3">
+        <p>STEP 3 - 请填写个人信息：</p>
+        <label for="name">
+          姓名：
+          <input type="text" id="name" />
+        </label>
+        <br />
+        <label for="phone">
+          手机号码：
+          <input type="text" id="phone" />
+        </label>
+      </div>
+      <button class="btn btn-primary" id="submitForm">提交预定</button>
+    </div>
+
+    <script>
+      function queryReservableRooms() {
+        if (!$('#startDate').val().trim() || !$('#endDate').val().trim()) {
+          alert('请确定时间选择！')
+          return
+        }
+        $.ajax({
+          url: '/reserve/available',
+          method: 'GET',
+          data: {
+            startDate: new Date($('#startDate').val()).getTime(),
+            endDate: new Date($('#endDate').val()).getTime(),
+          },
+          contentType: 'application/x-www-form-urlencoded',
+          dataType: 'json',
+          success: (data) => {
+            $('.step2').toggle('visiable-step')
+            data.data.forEach((v) => {
+              $('#roomIdSelect').append(`<option value="${v}">${v}</option>`)
+            })
+            $('#roomIdSelect').on('change', function () {
+              $('.step3').css('display', 'block')
+            })
+          },
+          error: (error) => {
+            console.log(error)
+          },
+        })
+      }
+
+      $('#openReserveList').on('click', function () {
+        window.location.href = '/reserve/preShowAll'
+      })
+
+      $('#submitForm').on('click', function () {
+        $.ajax({
+          url: '/reserve/add',
+          method: 'POST',
+          data: {
+            roomId: $('#roomIdSelect').val(),
+            reserverName: $('#name').val(),
+            reserverPhone: $('#phone').val(),
+            startDate: new Date($('#startDate').val()).getTime(),
+            endDate: new Date($('#endDate').val()).getTime(),
+          },
+          contentType: 'application/x-www-form-urlencoded',
+          dataType: 'json',
+          success: (data) => {
+            alert('预订成功！')
+          },
+          error: (error) => {
+            console.log(error)
+          },
+        })
+      })
+    </script>
+  </body>
+</html>
