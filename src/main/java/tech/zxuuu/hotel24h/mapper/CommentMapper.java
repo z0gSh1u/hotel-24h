@@ -8,6 +8,8 @@ import tech.zxuuu.hotel24h.entity.Comment;
 
 import java.util.List;
 
+// 评论相关
+
 @Mapper
 public interface CommentMapper {
 
@@ -22,5 +24,8 @@ public interface CommentMapper {
 
   @Delete("DELETE FROM tb_comment WHERE id=#{orderId}")
   Boolean removeComment(String orderId);
+
+  @Select("SELECT comment FROM tb_comment ORDER BY id LIMIT 50")
+  List<String> concatRecentComments();
 
 }

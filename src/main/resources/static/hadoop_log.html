@@ -1,0 +1,338 @@
+Here is the output from stdout:
+Here is the output from stdout:<br>
+Last login: Sat Sep  5 05:32:16 2020 from 192.168.239.1
+Here is the output from stdout:<br>
+
+Here is the output from stdout:<br>
+hadoop fs -rm -r /user/hadoop/hotel24h/output/
+Here is the output from stdout:<br>
+
+Here is the output from stdout:<br>
+exit
+Here is the output from stdout:<br>
+
+Here is the output from stdout:<br>
+[root@hadoop130 ~]# hadoop fs -rm -r /user/hadoop/hotel24h/output/
+Here is the output from stdout:<br>
+20/09/05 05:34:34 INFO fs.TrashPolicyDefault: Namenode trash configuration: Deletion interval = 0 minutes, Emptier interval = 0 minutes.
+Here is the output from stdout:<br>
+Deleted /user/hadoop/hotel24h/output
+Here is the output from stdout:<br>
+[root@hadoop130 ~]# 
+Here is the output from stdout:<br>
+[root@hadoop130 ~]# exit
+Here is the output from stdout:<br>
+logout
+Here is the output from stdout:<br>
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6542f523] was not registered for synchronization because synchronization is not active
+[2m2020-09-05 05:34:34.691[0;39m [32m INFO[0;39m [35m106976[0;39m [2m---[0;39m [2m[nio-8080-exec-7][0;39m [36mcom.zaxxer.hikari.HikariDataSource      [0;39m [2m:[0;39m HikariPool-1 - Starting...
+[2m2020-09-05 05:34:34.694[0;39m [33m WARN[0;39m [35m106976[0;39m [2m---[0;39m [2m[nio-8080-exec-7][0;39m [36mcom.zaxxer.hikari.util.DriverDataSource [0;39m [2m:[0;39m Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+[2m2020-09-05 05:34:34.948[0;39m [32m INFO[0;39m [35m106976[0;39m [2m---[0;39m [2m[nio-8080-exec-7][0;39m [36mcom.zaxxer.hikari.HikariDataSource      [0;39m [2m:[0;39m HikariPool-1 - Start completed.
+JDBC Connection [HikariProxyConnection@1348238233 wrapping com.mysql.cj.jdbc.ConnectionImpl@6e859020] will not be managed by Spring
+==>  Preparing: SELECT comment FROM tb_comment ORDER BY id LIMIT 50
+==> Parameters: 
+<==    Columns: comment
+<==        Row: 真不错，住在山里面真不错。
+<==        Row: 真不错，住在山里面真不错。
+<==        Row: 噫吁嚱，危乎高哉！蜀道之难，难于上青天！蚕丛及鱼凫，开国何茫然！尔来四万八千岁，不与秦塞通人烟。西当太白有鸟道，可以横绝峨眉巅。地崩山摧壮士死，然后天梯石栈相钩连。上有六龙回日之高标，下有冲波逆折之回川。黄鹤之飞尚不得过，猿猱欲度愁攀援。青泥何盘盘，百步九折萦岩峦。扪参历井仰胁息，以手抚膺坐长叹。
+<==        Row: 真不错~
+<==        Row: 不舒服，酒店不好，床铺难受！
+<==        Row: 测试
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6542f523]
+Here is the output from stdout:
+Here is the output from stdout:<br>
+Last login: Sat Sep  5 05:34:31 2020 from 192.168.239.1
+Here is the output from stdout:<br>
+
+Here is the output from stdout:<br>
+/opt/module/hadoop-2.7.2/bin/hadoop jar /opt/module/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /user/hadoop/hotel24h/input/* /user/hadoop/hotel24h/output/
+Here is the output from stdout:<br>
+
+Here is the output from stdout:<br>
+exit
+Here is the output from stdout:<br>
+
+Here is the output from stdout:<br>
+[root@hadoop130 ~]# /opt/module/hadoop-2.7.2/bin/hadoop jar /opt/module/hadoo
+Here is the output from stdout:<br>
+<dule/hadoop-2.7.2/bin/hadoop jar /opt/module/hadoop                         -2.7.2/share/hadoop/mapre
+Here is the output from stdout:<br>
+
+Here is the output from stdout:<br>
+<op jar /opt/module/hadoop-2.7.2/share/hadoop/mapred                         uce/hadoop-mapreduce-exam
+Here is the output from stdout:<br>
+
+Here is the output from stdout:<br>
+<2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examp                         les-2.7.2.jar wordcount /
+Here is the output from stdout:<br>
+
+Here is the output from stdout:<br>
+<ce/hadoop-mapreduce-examples-2.7.2.jar wordcount /u                         ser/hadoop/hotel24h/input
+Here is the output from stdout:<br>
+
+Here is the output from stdout:<br>
+<es-2.7.2.jar wordcount /user/hadoop/hotel24h/input/                         * /user/hadoop/hotel24h/o
+Here is the output from stdout:<br>
+
+Here is the output from stdout:<br>
+<er/hadoop/hotel24h/input/* /user/hadoop/hotel24h/ou                         tput/
+Here is the output from stdout:<br>
+20/09/05 05:34:40 INFO client.RMProxy: Connecting to ResourceManager at hadoop132/192.168.239.132:8032
+Here is the output from stdout:<br>
+20/09/05 05:34:41 INFO input.FileInputFormat: Total input paths to process : 1
+Here is the output from stdout:<br>
+20/09/05 05:34:41 INFO mapreduce.JobSubmitter: number of splits:1
+Here is the output from stdout:<br>
+20/09/05 05:34:42 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1599248635353_0017
+Here is the output from stdout:<br>
+20/09/05 05:34:42 INFO impl.YarnClientImpl: Submitted application application_1599248635353_0017
+Here is the output from stdout:<br>
+20/09/05 05:34:42 INFO mapreduce.Job: The url to track the job: http://hadoop132:8088/proxy/application_1599248635353_0017/
+Here is the output from stdout:<br>
+20/09/05 05:34:42 INFO mapreduce.Job: Running job: job_1599248635353_0017
+Here is the output from stdout:<br>
+20/09/05 05:34:52 INFO mapreduce.Job: Job job_1599248635353_0017 running in uber mode : false
+Here is the output from stdout:<br>
+20/09/05 05:34:52 INFO mapreduce.Job:  map 0% reduce 0%
+Here is the output from stdout:<br>
+20/09/05 05:34:59 INFO mapreduce.Job:  map 100% reduce 0%
+Here is the output from stdout:<br>
+20/09/05 05:35:07 INFO mapreduce.Job:  map 100% reduce 100%
+Here is the output from stdout:<br>
+20/09/05 05:35:07 INFO mapreduce.Job: Job job_1599248635353_0017 completed successfully
+Here is the output from stdout:<br>
+20/09/05 05:35:07 INFO mapreduce.Job: Counters: 49
+Here is the output from stdout:<br>
+	File System Counters
+Here is the output from stdout:<br>
+		FILE: Number of bytes read=1296
+Here is the output from stdout:<br>
+		FILE: Number of bytes written=237559
+Here is the output from stdout:<br>
+		FILE: Number of read operations=0
+Here is the output from stdout:<br>
+		FILE: Number of large read operations=0
+Here is the output from stdout:<br>
+		FILE: Number of write operations=0
+Here is the output from stdout:<br>
+		HDFS: Number of bytes read=904
+Here is the output from stdout:<br>
+		HDFS: Number of bytes written=846
+Here is the output from stdout:<br>
+		HDFS: Number of read operations=6
+Here is the output from stdout:<br>
+		HDFS: Number of large read operations=0
+Here is the output from stdout:<br>
+		HDFS: Number of write operations=2
+Here is the output from stdout:<br>
+	Job Counters 
+Here is the output from stdout:<br>
+		Launched map tasks=1
+Here is the output from stdout:<br>
+		Launched reduce tasks=1
+Here is the output from stdout:<br>
+		Data-local map tasks=1
+Here is the output from stdout:<br>
+		Total time spent by all maps in occupied slots (ms)=4645
+Here is the output from stdout:<br>
+		Total time spent by all reduces in occupied slots (ms)=5302
+Here is the output from stdout:<br>
+		Total time spent by all map tasks (ms)=4645
+Here is the output from stdout:<br>
+		Total time spent by all reduce tasks (ms)=5302
+Here is the output from stdout:<br>
+		Total vcore-milliseconds taken by all map tasks=4645
+Here is the output from stdout:<br>
+		Total vcore-milliseconds taken by all reduce tasks=5302
+Here is the output from stdout:<br>
+		Total megabyte-milliseconds taken by all map tasks=4756480
+Here is the output from stdout:<br>
+		Total megabyte-milliseconds taken by all reduce tasks=5429248
+Here is the output from stdout:<br>
+	Map-Reduce Framework
+Here is the output from stdout:<br>
+		Map input records=1
+Here is the output from stdout:<br>
+		Map output records=133
+Here is the output from stdout:<br>
+		Map output bytes=1301
+Here is the output from stdout:<br>
+		Map output materialized bytes=1296
+Here is the output from stdout:<br>
+		Input split bytes=135
+Here is the output from stdout:<br>
+		Combine input records=133
+Here is the output from stdout:<br>
+		Combine output records=111
+Here is the output from stdout:<br>
+		Reduce input groups=111
+Here is the output from stdout:<br>
+		Reduce shuffle bytes=1296
+Here is the output from stdout:<br>
+		Reduce input records=111
+Here is the output from stdout:<br>
+		Reduce output records=111
+Here is the output from stdout:<br>
+		Spilled Records=222
+Here is the output from stdout:<br>
+		Shuffled Maps =1
+Here is the output from stdout:<br>
+		Failed Shuffles=0
+Here is the output from stdout:<br>
+		Merged Map outputs=1
+Here is the output from stdout:<br>
+		GC time elapsed (ms)=163
+Here is the output from stdout:<br>
+		CPU time spent (ms)=1480
+Here is the output from stdout:<br>
+		Physical memory (bytes) snapshot=316788736
+Here is the output from stdout:<br>
+		Virtual memory (bytes) snapshot=4156231680
+Here is the output from stdout:<br>
+		Total committed heap usage (bytes)=198316032
+Here is the output from stdout:<br>
+	Shuffle Errors
+Here is the output from stdout:<br>
+		BAD_ID=0
+Here is the output from stdout:<br>
+		CONNECTION=0
+Here is the output from stdout:<br>
+		IO_ERROR=0
+Here is the output from stdout:<br>
+		WRONG_LENGTH=0
+Here is the output from stdout:<br>
+		WRONG_MAP=0
+Here is the output from stdout:<br>
+		WRONG_REDUCE=0
+Here is the output from stdout:<br>
+	File Input Format Counters 
+Here is the output from stdout:<br>
+		Bytes Read=769
+Here is the output from stdout:<br>
+	File Output Format Counters 
+Here is the output from stdout:<br>
+		Bytes Written=846
+Here is the output from stdout:<br>
+[root@hadoop130 ~]# 
+Here is the output from stdout:<br>
+[root@hadoop130 ~]# exit
+Here is the output from stdout:<br>
+logout
+Here is the output from stdout:<br>
+[不错, 真不错, 真好, 很棒, 舒适, 舒服, 很好, 很舒服, 很舒适, 体验好, 好, 非常好, 棒, 好的, 谢谢, 爱你]
+<br>
+[垃圾, 乐色, 难受, 讨厌, 烂, 很烂, 不好, 不舒服, 不爱]
+<br>
+上 
+上有 
+下有 
+不与 
+不好 
+不得 
+不舒服 
+不错 
+丛 
+之 
+之难 
+之高 
+九 
+人烟 
+以 
+仰 
+住在 
+何 
+八千 
+六 
+冲 
+凫 
+千岁 
+危乎 
+及 
+可以 
+吁 
+后天 
+哉 
+噫 
+嚱 
+四万 
+四万八千 
+回 
+地崩山摧 
+坐 
+塞 
+壮士 
+天梯 
+太白 
+尔来 
+尚不 
+山里 
+岁 
+岩 
+峦 
+峨眉 
+巅 
+川 
+床铺 
+度 
+开国 
+当 
+得过 
+息 
+愁 
+手 
+扪参历井 
+折 
+抚 
+攀援 
+日 
+有 
+栈 
+横 
+欲 
+步 
+死 
+波 
+泥 
+测试 
+然后 
+猱 
+猿 
+百 
+百步 
+盘 
+相 
+真不 
+真不错 
+石 
+秦 
+绝 
+胁 
+膺 
+舒服 
+茫然 
+萦 
+蚕 
+蜀道 
+西 
+连 
+逆 
+通人 
+道 
+酒店 
+里面 
+钩 
+长叹 
+难于 
+难于上青天 
+难受 
+青 
+青天 
+飞 
+高 
+高标 
+鱼 
+鸟 
+黄鹤 
+龙 

@@ -1,9 +1,10 @@
 package tech.zxuuu.hotel24h.entity;
 
+// 评论类
 public class Comment {
 
-  private String id;
-  private String comment;
+  private String id; // 订单号
+  private String comment; // 评论内容
 
   @Override
   public String toString() {

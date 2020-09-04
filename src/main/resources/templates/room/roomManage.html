@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>客房管理系统</title>
+    <link
+      rel="stylesheet"
+      href="http://localhost:8080/style/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="http://localhost:8080/style/room/style.css" />
+    <script src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
+    <script src="http://localhost:8080/js/bootstrap.min.js"></script>
+    <script src="http://localhost:8080/js/bootstrap-table.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <p class="title">客房管理系统</p>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#newRoomModal"
+      >
+        新增客房
+      </button>
+
+      <table id="roomTable"></table>
+    </div>
+
+    <!-- modal  -->
+    <div class="modal fade" id="newRoomModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+            <h4 class="modal-title">新增客房</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="control-label">房号：</label>
+                <input type="text" class="form-control" id="roomNoInput" />
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="control-label"
+                  >房间类型：</label
+                >
+                <select class="form-control" id="roomTypeSelect"></select>
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="control-label">定价：</label>
+                <input type="text" class="form-control" id="roomPriceInput" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              关闭
+            </button>
+            <button type="button" class="btn btn-primary" id="modalSubmitBtn">
+              添加
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modifyRoomModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+            <h4 class="modal-title">编辑客房</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="control-label">房号：</label>
+                <input
+                  disabled
+                  type="text"
+                  class="form-control"
+                  id="modifyRoomNoInput"
+                />
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="control-label"
+                  >房间类型：</label
+                >
+                <select class="form-control" id="modifyRoomTypeSelect"></select>
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="control-label">定价：</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="modifyRoomPriceInput"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              关闭
+            </button>
+            <button type="button" class="btn btn-primary" id="modifySubmitBtn">
+              修改
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.roomTypes = ['单人房', '双人房', '情侣房', '总统套房']
+      $('#newRoomModal').on('shown.bs.modal', function (event) {
+        // 模态框渲染房间类型
+        const modal = $(this)
+        const roomTypes = window.roomTypes
+        roomTypes.forEach((v, i) => {
+          modal
+            .find('#roomTypeSelect')
+            .append(`<option value="${i + 1}">${v}</option>`)
+        })
+        // 模态框做添加按钮监听
+        modal.find('#modalSubmitBtn').on('click', function () {
+          $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8080/room/add',
+            data: {
+              roomId: $('#roomNoInput').val(),
+              roomType: $('#roomTypeSelect').val(),
+              roomPrice: $('#roomPriceInput').val(),
+            },
+            contentType: 'application/x-www-form-urlencoded',
+            dataType: 'json',
+            success: function (data) {
+              alert(['新增成功', '新增失败，房号重复'][data.status])
+              window.location.href = window.location.href
+            },
+            error: function (error) {
+              console.log(error)
+            },
+          })
+        })
+      })
+
+      // 打表
+      $(document).ready(function () {
+        $('#roomTable').bootstrapTable({
+          ajax: function (request) {
+            $.ajax({
+              type: 'GET',
+              url: 'http://localhost:8080/room/list',
+              contentType: 'application/x-www-form-urlencoded',
+              dataType: 'json',
+              success: function (res) {
+                request.success({
+                  row: res.data,
+                })
+                $('#roomTable').bootstrapTable('load', res.data)
+              },
+              error: function (error) {
+                console.log(error)
+              },
+            })
+          },
+          striped: true,
+          pageNumber: 1,
+          pagination: true,
+          sidePagination: 'client',
+          pageSize: 8,
+          columns: [
+            {
+              title: '房间号',
+              field: 'id',
+            },
+            {
+              title: '房间类型',
+              field: 'type',
+              formatter: (type) => window.roomTypes[type],
+            },
+            {
+              title: '房间价格',
+              field: 'price',
+            },
+            {
+              field: 'id',
+              title: '操作',
+              width: 150,
+              formatter: (id, row, idx) =>
+                `<button class="btn btn-info" onclick="modifyRoom(${id}, ${
+                  row.type + 1
+                }, ${row.price})">编辑</button>&nbsp;` +
+                `<button class="btn btn-danger" onclick="removeRoom(${id})">删除</button>`,
+            },
+          ],
+        })
+      })
+
+      function removeRoom(id) {
+        const cfm = confirm(`确认要移除号码为 ${id} 的房间吗？`)
+        if (cfm) {
+          $.ajax({
+            url: '/room/remove',
+            method: 'POST',
+            data: {
+              roomId: id,
+            },
+            contentType: 'application/x-www-form-urlencoded',
+            dataType: 'json',
+            success: (data) => {
+              console.log(data)
+              alert(['删除成功', '删除失败'][data.status])
+              window.location.href = window.location.href
+            },
+            error: (error) => {
+              console.log(error)
+            },
+          })
+        }
+      }
+
+      function modifyRoom(id, type, price) {
+        $('#modifyRoomModal').off('shown.bs.modal')
+        $('#modifyRoomModal').on('shown.bs.modal', function (event) {
+          // 模态框渲染房间类型
+          const modal = $(this)
+          const roomTypes = window.roomTypes
+          roomTypes.forEach((v, i) => {
+            modal
+              .find('#modifyRoomTypeSelect')
+              .append(`<option value="${i + 1}">${v}</option>`)
+          })
+          // 填充原有信息
+          $('#modifyRoomNoInput').val(id)
+          $('#modifyRoomTypeSelect').val(type)
+          $('#modifyRoomPriceInput').val(price)
+          // 模态框做添加按钮监听
+          modal.find('#modifySubmitBtn').on('click', function () {
+            $.ajax({
+              type: 'POST',
+              url: 'http://localhost:8080/room/modify',
+              data: {
+                roomId: $('#modifyRoomNoInput').val(),
+                roomType: $('#modifyRoomTypeSelect').val(),
+                roomPrice: $('#modifyRoomPriceInput').val(),
+              },
+              contentType: 'application/x-www-form-urlencoded',
+              dataType: 'json',
+              success: function (data) {
+                alert(['修改成功', '修改失败'][data.status])
+                window.location.href = window.location.href
+              },
+              error: function (error) {
+                console.log(error)
+              },
+            })
+          })
+        })
+        $('#modifyRoomModal').modal('show')
+      }
+    </script>
+  </body>
+</html>

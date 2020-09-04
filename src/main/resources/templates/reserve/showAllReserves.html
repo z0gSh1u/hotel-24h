@@ -10,76 +10,100 @@
     <script src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
     <script src="http://localhost:8080/js/bootstrap-table.min.js"></script>
     <title>查看所有预定信息</title>
+
+    <style>
+      .title {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .table-container {
+        margin: 0 auto;
+        width: 80%;
+      }
+    </style>
   </head>
 
   <body>
-    <div>
+    <div class="title">
+      <h2>所有预订信息列表</h2>
+      <a href="http://localhost:8080">返回首页</a>
+    </div>
+
+    <div class="table-container">
       <table id="table"></table>
     </div>
 
     <script>
       $(document).ready(function () {
-        $("#table").bootstrapTable({
+        $('#table').bootstrapTable({
           ajax: function (request) {
             $.ajax({
-              method: "GET",
-              url: "http://localhost:8080/reserve/showAll",
-              contentType: "application/x-www-form-urlencoded",
-              dataType: "json",
+              method: 'GET',
+              url: 'http://localhost:8080/reserve/showAll',
+              contentType: 'application/x-www-form-urlencoded',
+              dataType: 'json',
               success: function (res) {
                 request.success({
                   row: res.data,
-                });
-                $("#table").bootstrapTable("load", res.data);
+                })
+                $('#table').bootstrapTable('load', res.data)
               },
               error: function (error) {
-                console.log(error);
+                console.log(error)
               },
-            });
+            })
           },
           striped: true,
           pageNumber: 1,
           pagination: true,
-          sidePagination: "client",
+          sidePagination: 'client',
           pageSize: 5,
           columns: [
             {
-              title: "订单号",
-              field: "id",
+              title: '订单号',
+              field: 'id',
             },
             {
-              title: "roomId",
-              field: "roomId",
+              title: '房间号',
+              field: 'roomId',
             },
             {
-              title: "startDate",
-              field: "startDate",
+              title: '预定开始时间',
+              field: 'startDate',
+              formatter: (v) => new Date(v).toLocaleDateString(),
             },
             {
-              title: "endDate",
-              field: "endDate",
+              title: '预定结束时间',
+              field: 'endDate',
+              formatter: (v) => new Date(v).toLocaleDateString(),
             },
             {
-              title: "reserverName",
-              field: "reserverName",
+              title: '预订人姓名',
+              field: 'reserverName',
             },
             {
-              title: "status",
-              field: "status",
+              title: '预订人手机号',
+              field: 'reserverPhone',
             },
             {
-              field: "id",
-              title: "操作",
+              title: '状态',
+              field: 'status',
+              formatter: (v) =>
+                ['预定未来', '当前在住', '离店未评价', '离店已评价'][v],
+            },
+            {
+              field: 'id',
+              title: '操作',
               width: 150,
               formatter: (id, row, idx) => {
-                return `<button class="btn btn-danger" onclick="removeReserve(${id})">删除</button>`;
+                return `<button class="btn btn-danger" onclick="removeReserve(${id})">删除</button>`
               },
             },
           ],
-        });
-      });
-      function removeReserve(id){
-        const cfm = confirm(`确认要移除預定單號${id} 吗？`)
+        })
+      })
+      function removeReserve(id) {
+        const cfm = confirm(`确认要移除预订单号 ${id} 吗？`)
         if (cfm) {
           $.ajax({
             url: 'http://localhost:8080/reserve/delete',

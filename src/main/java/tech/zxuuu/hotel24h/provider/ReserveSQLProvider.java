@@ -1,7 +1,6 @@
 package tech.zxuuu.hotel24h.provider;
 
 import org.apache.ibatis.jdbc.SQL;
-import tech.zxuuu.hotel24h.entity.Reserve;
 
 public class ReserveSQLProvider {
 

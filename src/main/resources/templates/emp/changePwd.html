@@ -1,99 +1,171 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<meta charset="utf-8" />
-<head>
+  <meta charset="utf-8" />
+  <head>
     <link rel="icon" href="favicon.ico" />
-    <title> 员工密码修改 </title>
+    <title>员工密码修改</title>
     <base target="_blank" />
     <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css" />
-    <script type="text/javascript" src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="http://localhost:8080/js/jquery.backstretch.min.js"></script>
-    <script type="text/javascript" src="http://localhost:8080/js/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="http://localhost:8080/js/jquery-3.3.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://localhost:8080/js/jquery.backstretch.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://localhost:8080/js/bootstrap.min.js"
+    ></script>
     <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-<script type="text/javascript">$.backstretch(
-    ["img/indexLoop/1.jpg", "img/indexLoop/2.jpg",  "img/indexLoop/3.jpg",  "img/indexLoop/4.jpg",  "img/indexLoop/5.jpg",  "img/indexLoop/6.jpg"], {
-        duration: 5000,
-        fade: 1000
-    });</script>
-<div id="wholeblock" class="container well" style="margin: 0 auto; margin-top: 1.8%; width: 600px; background-color: rgba(255,255,255,0.8);">
-    <div id="banner" style="opacity: 1;">
-        <center>
-            <img src="img/seulogo-transparent.png" width="20%" height="100%" />
-        </center>
-        <h1 style="text-align: center;"><b>24小时</b>&nbsp;酒店管理系统</h1>
-    </div>
-    <br />
-    <div style="text-align: center; opacity: 1;">
-        <h2>· 员工密码修改 ·</h2>
-        <br>
-        <form id="loginform" action="foo/foo_loginProcess.php" method="post">
-            <input class="input-lg" placeholder="账       号" name="empId" id="empId" style="text-align: center;"/>
-            <br>
-            <br>
-            <input class="input-lg" placeholder="原   密   码" name="empPassword" id="empPassword" style="text-align: center;" type="password"; />
-            <br>
-            <br>
-            <input class="input-lg" placeholder="新   密   码" name="newEmpPassword" id="newEmpPassword" style="text-align: center;" type="password"; />
-            <br>
-            <br>
-            <input class="input-lg" placeholder="新 密 码 确 认" name="newEmpPasswordAgain" id="newEmpPasswordAgain" style="text-align: center;" type="password"; />
-            <br>
-            <br>
-            <input type="hidden" name="captcha" value="false" id="captcha"/>
-            <div id="slideBar" style="text-align: center; display: inline-block;"></div>
-            <br><br>
-            <button type="button" class="btn btn-primary" style="font-size: 18px;" onclick="changePwd();">
-                确  认
-            </button>
-
-            <button type="button" class="btn btn-primary" style="font-size: 18px;" onclick="window.location.href = '/';">
-                返  回
-            </button>
-
-        </form>
-    </div>
-    <script>
-        function changePwd() {
-            if ($("#empId").val() == "" || $("#empPassword").val() == "") {
-                alert("请输入账号与原密码")
-            } else if ($("#empId").val() == "admin") {
-                alert("不可修改管理员密码")
-            } else if ($("#newEmpPassword").val() == "") {
-                alert("新密码不可为空")
-            } else if ($("#newEmpPassword").val() != $("#newEmpPasswordAgain").val()) {
-                alert("新密码与密码确认不一致")
-            } else {
-                $.ajax({
-                    url: "/changePwd",
-                    type: "POST",
-                    data: {
-                        empId: $("#empId").val(),
-                        empPwd: md5($("#empPassword").val()),
-                        newEmpPwd: md5($("#newEmpPassword").val())
-                    },
-                    contentType: "application/x-www-form-urlencoded",
-                    dataType: "json",
-                    success: (data) => {
-                        if (!data.isOk) {
-                            alert("原密码不正确")
-                        } else {
-                            alert("密码修改成功")
-                            window.location.href = "/"
-                        }
-                    },
-                    error: (error) => {
-                        alert("发生错误")
-                        console.log(error)
-                    }
-                })
-            }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <script type="text/javascript">
+      $.backstretch(
+        [
+          'img/indexLoop/1.jpg',
+          'img/indexLoop/2.jpg',
+          'img/indexLoop/3.jpg',
+          'img/indexLoop/4.jpg',
+          'img/indexLoop/5.jpg',
+          'img/indexLoop/6.jpg',
+        ],
+        {
+          duration: 5000,
+          fade: 1000,
         }
+      )
     </script>
-</div>
+    <div
+      id="wholeblock"
+      class="container well"
+      style="
+        margin: 0 auto;
+        margin-top: 1.8%;
+        width: 600px;
+        background-color: rgba(255, 255, 255, 0.8);
+      "
+    >
+      <div id="banner" style="opacity: 1">
+        <center>
+          <img src="img/seulogo-transparent.png" width="20%" height="100%" />
+        </center>
+        <h1 style="text-align: center"><b>24小时</b>&nbsp;酒店管理系统</h1>
+      </div>
+      <br />
+      <div style="text-align: center; opacity: 1">
+        <h2>· 员工密码修改 ·</h2>
+        <br />
+        <form id="loginform" action="foo/foo_loginProcess.php" method="post">
+          <input
+            class="input-lg"
+            placeholder="账       号"
+            name="empId"
+            id="empId"
+            style="text-align: center"
+          />
+          <br />
+          <br />
+          <input
+            class="input-lg"
+            placeholder="原   密   码"
+            name="empPassword"
+            id="empPassword"
+            style="text-align: center"
+            type="password"
+            ;
+          />
+          <br />
+          <br />
+          <input
+            class="input-lg"
+            placeholder="新   密   码"
+            name="newEmpPassword"
+            id="newEmpPassword"
+            style="text-align: center"
+            type="password"
+            ;
+          />
+          <br />
+          <br />
+          <input
+            class="input-lg"
+            placeholder="新 密 码 确 认"
+            name="newEmpPasswordAgain"
+            id="newEmpPasswordAgain"
+            style="text-align: center"
+            type="password"
+            ;
+          />
+          <br />
+          <br />
+          <input type="hidden" name="captcha" value="false" id="captcha" />
+          <div
+            id="slideBar"
+            style="text-align: center; display: inline-block"
+          ></div>
+          <br /><br />
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="font-size: 18px"
+            onclick="changePwd();"
+          >
+            确 认
+          </button>
 
-</body>
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="font-size: 18px"
+            onclick="window.location.href = '/';"
+          >
+            返 回
+          </button>
+        </form>
+      </div>
+      <script>
+        function changePwd() {
+          if ($('#empId').val() == '' || $('#empPassword').val() == '') {
+            alert('请输入账号与原密码')
+          } else if ($('#empId').val() == 'admin') {
+            alert('不可修改管理员密码')
+          } else if ($('#newEmpPassword').val() == '') {
+            alert('新密码不可为空')
+          } else if (
+            $('#newEmpPassword').val() != $('#newEmpPasswordAgain').val()
+          ) {
+            alert('新密码与密码确认不一致')
+          } else {
+            $.ajax({
+              url: '/changePwd',
+              type: 'POST',
+              data: {
+                empId: $('#empId').val(),
+                empPwd: md5($('#empPassword').val()),
+                newEmpPwd: md5($('#newEmpPassword').val()),
+              },
+              contentType: 'application/x-www-form-urlencoded',
+              dataType: 'json',
+              success: (data) => {
+                if (!data.isOk) {
+                  alert('原密码不正确')
+                } else {
+                  alert('密码修改成功')
+                  window.location.href = '/'
+                }
+              },
+              error: (error) => {
+                alert('发生错误')
+                console.log(error)
+              },
+            })
+          }
+        }
+      </script>
+    </div>
+  </body>
 </html>

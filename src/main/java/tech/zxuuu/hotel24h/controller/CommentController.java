@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tech.zxuuu.hotel24h.entity.Comment;
+import tech.zxuuu.hotel24h.hadoop.HDFSReadWrite;
 import tech.zxuuu.hotel24h.service.CommentService;
 import tech.zxuuu.hotel24h.util.JSONUtils;
 
@@ -27,8 +28,8 @@ public class CommentController {
 
   @PostMapping("/add")
   public @ResponseBody
-  String addComment(@RequestParam("orderId") String orderId, @RequestParam("comment") String comment) {
-    Integer retCode = commentService.insertComment(new Comment(orderId, comment));
+  String addComment(@RequestParam("orderId") String orderId, @RequestParam("comment") String comment, @RequestParam String name, @RequestParam String phone) {
+    Integer retCode = commentService.insertComment(new Comment(orderId, comment), name, phone);
     Map map = new HashMap<String, Object>() {{
       put("status", retCode);
     }};
@@ -55,12 +56,25 @@ public class CommentController {
   @PostMapping("/remove")
   public @ResponseBody
   String removeComment(@RequestParam("orderId") String orderId) {
-    System.out.println("got ser");
+    System.out.println("got dser");
     Integer retCode = commentService.removeComment(orderId);
     Map map = new HashMap<String, Object>() {{
       put("status", retCode);
     }};
     return JSONUtils.buildJSON(map);
+  }
+
+  // 评论分析
+  @GetMapping("/analyze")
+  public @ResponseBody
+  String analyzeComment() {
+    Map<String, Object> map = commentService.analyzeComment();
+    return JSONUtils.buildJSON(map);
+  }
+
+  @GetMapping("/analyzeView")
+  public String analyzeCommentView() {
+    return "comment/hadoop";
   }
 
 }

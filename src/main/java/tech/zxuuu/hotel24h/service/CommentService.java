@@ -3,11 +3,14 @@ package tech.zxuuu.hotel24h.service;
 import tech.zxuuu.hotel24h.entity.Comment;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CommentService {
-  Integer insertComment(Comment comment);
+  Integer insertComment(Comment comment, String name, String phone);
 
   List<Comment> getAllComment();
 
   Integer removeComment(String orderId);
+
+  Map<String, Object> analyzeComment();
 }
