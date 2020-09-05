@@ -1,17 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-  <p>临时主页</p>
-
-  <a href="http://localhost:8080/comment/listView">查看comment列表</a>
-  <a href="http://localhost:8080/comment/newView?orderId=123456">添加新comment</a>
-
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
+    <script src="http://localhost:8080/js/jquery.backstretch.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="http://localhost:8080/style/index.css"
+    />
+    <base target="_blank" />
+  </head>
+  <script type="text/javascript">
+    $.backstretch(
+      [
+        'http://localhost:8080/img/loop/1.jpg',
+        'http://localhost:8080/img/loop/2.jpg',
+        'http://localhost:8080/img/loop/3.jpg',
+        'http://localhost:8080/img/loop/4.jpg',
+      ],
+      {
+        duration: 5000,
+        fade: 1000,
+      }
+    )
+  </script>
+  <body>
+    <div class="title">
+      <p class="titleText">24h大酒店 管理系统首页</p>
+    </div>
+    <div class="container" id="container"></div>
+    <div class="footer">
+      <span
+        >09017227卓旭；09017224高钰铭；09017225沈汉唐<br />09017226曾铖；09017228王志华</span
+      >
+    </div>
+  </body>
+  <script>
+    const i18n = {
+      emp: '员工管理',
+      reserve: '预定管理',
+      room: '房间管理',
+      check: '入住退房管理',
+      comment: '评论管理',
+    }
+    const modules = {
+      emp: [
+        {
+          name: '登录页面',
+          url: '/login',
+        },
+        {
+          name: '管理页面',
+          url: '/emp/admin',
+        },
+      ],
+      reserve: [
+        {
+          name: '预定列表页面',
+          url: '/reserve/preShowAll',
+        },
+        {
+          name: '新增预订页面',
+          url: '/reserve/preAdd',
+        },
+      ],
+      room: [
+        {
+          name: '房间列表页面',
+          url: '/room/listView',
+        },
+      ],
+      check: [
+        {
+          name: '入住列表页面',
+          url: '/check/preCheck',
+        },
+      ],
+      comment: [
+        {
+          name: '新增评论页面',
+          url: '/comment/addView',
+        },
+        {
+          name: '评论列表页面',
+          url: '/comment/listView',
+        },
+        {
+          name: '大数据评论分析系统',
+          url: '/comment/analyzeView',
+        },
+      ],
+    }
+    function generateModule(key) {
+      let tpl = `
+        <div class="module">
+        <p>${i18n[key]}模块</p>
+      `
+      modules[key].forEach((sub) => {
+        tpl += `
+          <button class="btn" onclick="window.open('${sub.url}')">${sub.name}</button>
+        `
+      })
+      tpl += `</div>
+      `
+      $('#container').append(tpl)
+    }
+    $(document).ready(function () {
+      Object.keys(modules).forEach(generateModule)
+    })
+  </script>
 </html>

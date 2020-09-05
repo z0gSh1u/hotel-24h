@@ -36,4 +36,6 @@ public interface ReserveMapper {
     ") ORDER BY id ASC;\n")
   List<Integer> getAvailableRoomIds(Date start, Date end);
 
+  @Update("UPDATE tb_reserve SET status=#{status} WHERE id=#{id}")
+  void updateStatus(Integer status, String id);
 }

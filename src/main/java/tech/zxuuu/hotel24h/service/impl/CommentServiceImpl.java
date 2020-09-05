@@ -42,6 +42,7 @@ public class CommentServiceImpl implements CommentService {
       return 1;
     }
     commentMapper.insertComment(comment);
+    reserveMapper.updateStatus(3, comment.getId());
     return 0;
   }
 

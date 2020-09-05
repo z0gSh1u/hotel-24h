@@ -19,39 +19,50 @@ import java.util.Map;
 @Controller
 public class LoginController {
 
-    @Autowired
-    private LoginService loginService;
+  @Autowired
+  private LoginService loginService;
 
-    @GetMapping(path = "")
-    public String turnToLoginPage() {return "emp/login";}
+  @GetMapping("/")
+  public String goToIndexPage() {
+    return "index";
+  }
 
-    @PostMapping(path = "/login")
-    public @ResponseBody String login(@RequestParam String empId, @RequestParam String empPassword) {
-        Emp emp = this.loginService.empLogin(empId, empPassword);
-        Map map = new HashMap<String, String>();
-        if (emp == null) {
-            map.put("empId", "");
-            map.put("empName", "");
-        } else {
-            map.put("empId", emp.getId());
-            map.put("empName", emp.getName());
+  @GetMapping(path = "/login")
+  public String turnToLoginPage() {
+    return "emp/login";
+  }
 
-        }
-        return JSONUtils.buildJSON(map);
+  @PostMapping(path = "/login")
+  public @ResponseBody
+  String login(@RequestParam String empId, @RequestParam String empPassword) {
+    Emp emp = this.loginService.empLogin(empId, empPassword);
+    Map map = new HashMap<String, String>();
+    if (emp == null) {
+      map.put("empId", "");
+      map.put("empName", "");
+    } else {
+      map.put("empId", emp.getId());
+      map.put("empName", emp.getName());
+
     }
+    return JSONUtils.buildJSON(map);
+  }
 
-    @PostMapping(path = "/changePwd")
-    public @ResponseBody String changePwd(@RequestParam String empId, @RequestParam String empPwd, @RequestParam String newEmpPwd) {
-        Map map = new HashMap<String, Boolean>();
-        if (this.loginService.empLogin(empId, empPwd) == null) {
-            map.put("isOk", false);
-        } else {
-            this.loginService.changePwd(empId, newEmpPwd);
-            map.put("isOk", true);
-        }
-        return JSONUtils.buildJSON(map);
+  @PostMapping(path = "/changePwd")
+  public @ResponseBody
+  String changePwd(@RequestParam String empId, @RequestParam String empPwd, @RequestParam String newEmpPwd) {
+    Map map = new HashMap<String, Boolean>();
+    if (this.loginService.empLogin(empId, empPwd) == null) {
+      map.put("isOk", false);
+    } else {
+      this.loginService.changePwd(empId, newEmpPwd);
+      map.put("isOk", true);
     }
+    return JSONUtils.buildJSON(map);
+  }
 
-    @GetMapping(path = "/changePwdPage")
-    public String turnToChangePwdPage() {return "emp/changePwd";}
+  @GetMapping(path = "/changePwdPage")
+  public String turnToChangePwdPage() {
+    return "emp/changePwd";
+  }
 }
