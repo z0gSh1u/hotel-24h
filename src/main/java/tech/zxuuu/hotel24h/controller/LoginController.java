@@ -27,10 +27,17 @@ public class LoginController {
     return "index";
   }
 
-  @GetMapping(path = "/login")
-  public String turnToLoginPage() {
-    return "emp/login";
-  }
+
+    @GetMapping(path = "/login")
+    public String turnToLoginPage() {return "emp/login";}
+
+    @GetMapping(path = "/adminPage")
+    public String turnToAdminPage() {return "emp/admin";}
+
+    @GetMapping(path = "/indexPage")
+    public String turnToIndexPage() {return "index";}
+
+    }
 
   @PostMapping(path = "/login")
   public @ResponseBody
@@ -44,7 +51,6 @@ public class LoginController {
       map.put("empId", emp.getId());
       map.put("empName", emp.getName());
 
-    }
     return JSONUtils.buildJSON(map);
   }
 
