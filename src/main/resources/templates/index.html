@@ -5,26 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="http://localhost:8080/js/jquery-3.3.1.min.js"></script>
     <script src="http://localhost:8080/js/jquery.backstretch.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="http://localhost:8080/style/index.css"
-    />
+    <link rel="stylesheet" href="http://localhost:8080/style/index.css" />
     <base target="_blank" />
+    <title>24h大酒店 管理系统首页</title>
   </head>
-  <script type="text/javascript">
-    $.backstretch(
-      [
-        'http://localhost:8080/img/loop/1.jpg',
-        'http://localhost:8080/img/loop/2.jpg',
-        'http://localhost:8080/img/loop/3.jpg',
-        'http://localhost:8080/img/loop/4.jpg',
-      ],
-      {
-        duration: 5000,
-        fade: 1000,
-      }
-    )
-  </script>
   <body>
     <div class="title">
       <p class="titleText">24h大酒店 管理系统首页</p>
@@ -108,6 +92,18 @@
     }
     $(document).ready(function () {
       Object.keys(modules).forEach(generateModule)
+      $.backstretch(
+        [
+          'http://localhost:8080/img/loops/001.jpg',
+          'http://localhost:8080/img/loops/002.jpg',
+          'http://localhost:8080/img/loops/003.jpg',
+          'http://localhost:8080/img/loops/004.jpg',
+        ],
+        {
+          duration: 5000,
+          fade: 1000,
+        }
+      )
     })
   </script>
 </html>

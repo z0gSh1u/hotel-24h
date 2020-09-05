@@ -1,11 +1,10 @@
-body {
-  background: url(../img/bg.png) no-repeat;
-}
 .title {
   text-align: center;
 }
 .title .titleText {
-  font-size: 35px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #00BBFF;
 }
 .module {
   width: 600px;

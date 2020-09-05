@@ -14,69 +14,76 @@ import java.util.Map;
 @Controller
 public class AdminController {
 
-    @Autowired
-    private AdminService adminService;
+  @Autowired
+  private AdminService adminService;
 
-    @GetMapping("loginPage")
-    public String turnToLoginPage() {return "emp/login";}
+  @GetMapping("/loginPage")
+  public String turnToLoginPage() {
+    return "emp/login";
+  }
 
-    @PostMapping("/admin/select")
-    public @ResponseBody String selectEmp(@RequestParam String empId, @RequestParam String empName) {
-        Map map = new Hashtable<String, Object>(){{
-            put("list", adminService.queryEmp(new Emp(empId, "", empName)));
-        }};
-        return JSONUtils.buildJSON(map);
+  @PostMapping("/admin/select")
+  public @ResponseBody
+  String selectEmp(@RequestParam String empId, @RequestParam String empName) {
+    Map map = new Hashtable<String, Object>() {{
+      put("list", adminService.queryEmp(new Emp(empId, "", empName)));
+    }};
+    return JSONUtils.buildJSON(map);
+  }
+
+  @PostMapping("/admin/update")
+  public @ResponseBody
+  String updateEmp(@RequestParam String empId, @RequestParam String empName) {
+    Map map = new HashMap<String, Boolean>();
+    if (adminService.updateEmp(new Emp(empId, "", empName))) {
+      map.put("isOk", true);
+    } else {
+      map.put("isOk", false);
     }
+    return JSONUtils.buildJSON(map);
+  }
 
-    @PostMapping("/admin/update")
-    public @ResponseBody String updateEmp(@RequestParam String empId, @RequestParam String empName) {
-        Map map = new HashMap<String, Boolean>();
-        if (adminService.updateEmp(new Emp(empId, "", empName))) {
-            map.put("isOk", true);
-        } else {
-            map.put("isOk", false);
-        }
-        return JSONUtils.buildJSON(map);
+  @PostMapping("/admin/insert")
+  public @ResponseBody
+  String insertEmp(@RequestParam String empId, @RequestParam String empPwd, @RequestParam String empName) {
+    Map map = new HashMap<String, Boolean>();
+    if (!adminService.queryEmp(new Emp(empId, "", "")).isEmpty()) {
+      map.put("isOk", false);
+    } else {
+      adminService.insertEmp(new Emp(empId, empPwd, empName));
+      map.put("isOk", true);
     }
+    return JSONUtils.buildJSON(map);
+  }
 
-    @PostMapping("/admin/insert")
-    public @ResponseBody String insertEmp(@RequestParam String empId, @RequestParam String empPwd, @RequestParam String empName) {
-        Map map = new HashMap<String, Boolean>();
-        if (!adminService.queryEmp(new Emp(empId, "", "")).isEmpty()) {
-            map.put("isOk", false);
-        } else {
-            adminService.insertEmp(new Emp(empId, empPwd, empName));
-            map.put("isOk", true);
-        }
-        return JSONUtils.buildJSON(map);
+  @PostMapping("/admin/delete")
+  public @ResponseBody
+  String deleteEmp(@RequestParam String empId, @RequestParam String empName, @RequestParam String adminPwd) {
+    Map map = new HashMap<String, Boolean>();
+    if (!adminService.verifyAdmin(adminPwd)) {
+      map.put("isOk", false);
+      map.put("isVerified", false);
+    } else if (adminService.deleteEmp(empId, empName)) {
+      map.put("isOk", true);
+      map.put("isVerified", true);
+    } else {
+      map.put("isOk", false);
+      map.put("isVerified", true);
     }
+    return JSONUtils.buildJSON(map);
+  }
 
-    @PostMapping("/admin/delete")
-    public @ResponseBody String deleteEmp(@RequestParam String empId, @RequestParam String empName, @RequestParam String adminPwd) {
-        Map map = new HashMap<String, Boolean>();
-        if (!adminService.verifyAdmin(adminPwd)) {
-            map.put("isOk", false);
-            map.put("isVerified", false);
-        } else if (adminService.deleteEmp(empId, empName)){
-            map.put("isOk", true);
-            map.put("isVerified", true);
-        } else {
-            map.put("isOk", false);
-            map.put("isVerified", true);
-        }
-        return JSONUtils.buildJSON(map);
+  @PostMapping("/admin/changePwd")
+  public @ResponseBody
+  String changeAdminPwd(@RequestParam String oldAdminPwd, @RequestParam String newAdminPwd) {
+    Map map = new HashMap<String, Boolean>();
+    if (!adminService.verifyAdmin(oldAdminPwd)) {
+      map.put("isOk", false);
+    } else {
+      adminService.changeAdminPwd(newAdminPwd);
+      map.put("isOk", true);
     }
-
-    @PostMapping("/admin/changePwd")
-    public @ResponseBody String changeAdminPwd(@RequestParam String oldAdminPwd, @RequestParam String newAdminPwd) {
-        Map map = new HashMap<String, Boolean>();
-        if (!adminService.verifyAdmin(oldAdminPwd)) {
-            map.put("isOk", false);
-        } else {
-            adminService.changeAdminPwd(newAdminPwd);
-            map.put("isOk", true);
-        }
-        return JSONUtils.buildJSON(map);
-    }
+    return JSONUtils.buildJSON(map);
+  }
 
 }
