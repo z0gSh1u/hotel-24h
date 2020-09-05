@@ -32,7 +32,7 @@ public class ReserveController {
   String addReserve(Integer roomId, String reserverName, String reserverPhone, Long startDate, Long endDate) {
     reserveService.addReserve(new Reserve(null, roomId, new Date(startDate), new Date(endDate), reserverName, reserverPhone, null));
     Map<String, Object> map = new HashMap<>();
-    map.put("status", 1);
+    map.put("status", 0);
     return JSONUtils.buildJSON(map);
   }
 
@@ -48,7 +48,6 @@ public class ReserveController {
     Map map = new HashMap<String, Object>() {{
       put("data", reserves);
     }};
-    System.out.println("xxx");
     return JSONUtils.buildJSON(map);
   }
 
@@ -57,7 +56,7 @@ public class ReserveController {
   String deleteReserve(@RequestParam("id") String id) {
     reserveService.deleteReserve(id);
     Map<String, Object> map = new HashMap<>();
-    map.put("status", 1);
+    map.put("status", 0);
     return JSONUtils.buildJSON(map);
   }
 
