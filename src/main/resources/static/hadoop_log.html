@@ -1,0 +1,352 @@
+Here is the output from stdout:
+<br>
+hadoop fs -rm -r /user/hadoop/hotel24h/output/
+<br>
+
+<br>
+exit
+<br>
+
+<br>
+Last login: Sat Sep  5 14:03:29 2020
+<br>
+
+<br>
+[root@hadoop130 ~]# hadoop fs -rm -r /user/hadoop/hotel24h/output/
+<br>
+rm: `/user/hadoop/hotel24h/output/': No such file or directory
+<br>
+[root@hadoop130 ~]# 
+<br>
+[root@hadoop130 ~]# exit
+<br>
+logout
+<br>
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@27c44d01] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2053680674 wrapping com.mysql.cj.jdbc.ConnectionImpl@189ca705] will not be managed by Spring
+==>  Preparing: SELECT comment FROM tb_comment ORDER BY id LIMIT 50
+==> Parameters: 
+<==    Columns: comment
+<==        Row: 真不错，住在山里面真不错。
+<==        Row: 真不错，住在山里面真不错。
+<==        Row: 噫吁嚱，危乎高哉！蜀道之难，难于上青天！蚕丛及鱼凫，开国何茫然！尔来四万八千岁，不与秦塞通人烟。西当太白有鸟道，可以横绝峨眉巅。地崩山摧壮士死，然后天梯石栈相钩连。上有六龙回日之高标，下有冲波逆折之回川。黄鹤之飞尚不得过，猿猱欲度愁攀援。青泥何盘盘，百步九折萦岩峦。扪参历井仰胁息，以手抚膺坐长叹。
+<==        Row: 很舒服的酒店
+<==        Row: 周围很安全，不错的环境
+<==        Row: 挺好。
+<==        Row: 42
+<==        Row: 真好。
+<==        Row: 不舒服，酒店不好，床铺难受！
+<==        Row: 测试03
+<==        Row: 测试
+<==        Row: 测试02
+<==        Row: 环境很好，床很舒服
+<==      Total: 13
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@27c44d01]
+Here is the output from stdout:
+<br>
+/opt/module/hadoop-2.7.2/bin/hadoop jar /opt/module/hadoop-2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /user/hadoop/hotel24h/input/* /user/hadoop/hotel24h/output/
+<br>
+
+<br>
+exit
+<br>
+
+<br>
+Last login: Sat Sep  5 14:18:30 2020 from 192.168.239.1
+<br>
+
+<br>
+[root@hadoop130 ~]# /opt/module/hadoop-2.7.2/bin/hadoop jar /opt/module/hadoo
+<br>
+<dule/hadoop-2.7.2/bin/hadoop jar /opt/module/hadoop                         -2.7.2/share/hadoop/mapre
+<br>
+
+<br>
+<op jar /opt/module/hadoop-2.7.2/share/hadoop/mapred                         uce/hadoop-mapreduce-exam
+<br>
+
+<br>
+<2.7.2/share/hadoop/mapreduce/hadoop-mapreduce-examp                         les-2.7.2.jar wordcount /
+<br>
+
+<br>
+<ce/hadoop-mapreduce-examples-2.7.2.jar wordcount /u                         ser/hadoop/hotel24h/input
+<br>
+
+<br>
+<es-2.7.2.jar wordcount /user/hadoop/hotel24h/input/                         * /user/hadoop/hotel24h/o
+<br>
+
+<br>
+<er/hadoop/hotel24h/input/* /user/hadoop/hotel24h/ou                         tput/
+<br>
+20/09/05 14:18:42 INFO client.RMProxy: Connecting to ResourceManager at hadoop132/192.168.239.132:8032
+<br>
+20/09/05 14:18:44 INFO input.FileInputFormat: Total input paths to process : 1
+<br>
+20/09/05 14:18:44 INFO mapreduce.JobSubmitter: number of splits:1
+<br>
+20/09/05 14:18:45 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1599285884411_0001
+<br>
+20/09/05 14:18:46 INFO impl.YarnClientImpl: Submitted application application_1599285884411_0001
+<br>
+20/09/05 14:18:46 INFO mapreduce.Job: The url to track the job: http://hadoop132:8088/proxy/application_1599285884411_0001/
+<br>
+20/09/05 14:18:46 INFO mapreduce.Job: Running job: job_1599285884411_0001
+<br>
+20/09/05 14:19:00 INFO mapreduce.Job: Job job_1599285884411_0001 running in uber mode : false
+<br>
+20/09/05 14:19:00 INFO mapreduce.Job:  map 0% reduce 0%
+<br>
+20/09/05 14:19:10 INFO mapreduce.Job:  map 100% reduce 0%
+<br>
+20/09/05 14:19:21 INFO mapreduce.Job:  map 100% reduce 100%
+<br>
+20/09/05 14:19:22 INFO mapreduce.Job: Job job_1599285884411_0001 completed successfully
+<br>
+20/09/05 14:19:22 INFO mapreduce.Job: Counters: 49
+<br>
+	File System Counters
+<br>
+		FILE: Number of bytes read=1431
+<br>
+		FILE: Number of bytes written=237829
+<br>
+		FILE: Number of read operations=0
+<br>
+		FILE: Number of large read operations=0
+<br>
+		FILE: Number of write operations=0
+<br>
+		HDFS: Number of bytes read=1004
+<br>
+		HDFS: Number of bytes written=933
+<br>
+		HDFS: Number of read operations=6
+<br>
+		HDFS: Number of large read operations=0
+<br>
+		HDFS: Number of write operations=2
+<br>
+	Job Counters 
+<br>
+		Launched map tasks=1
+<br>
+		Launched reduce tasks=1
+<br>
+		Data-local map tasks=1
+<br>
+		Total time spent by all maps in occupied slots (ms)=7016
+<br>
+		Total time spent by all reduces in occupied slots (ms)=8475
+<br>
+		Total time spent by all map tasks (ms)=7016
+<br>
+		Total time spent by all reduce tasks (ms)=8475
+<br>
+		Total vcore-milliseconds taken by all map tasks=7016
+<br>
+		Total vcore-milliseconds taken by all reduce tasks=8475
+<br>
+		Total megabyte-milliseconds taken by all map tasks=7184384
+<br>
+		Total megabyte-milliseconds taken by all reduce tasks=8678400
+<br>
+	Map-Reduce Framework
+<br>
+		Map input records=1
+<br>
+		Map output records=152
+<br>
+		Map output bytes=1477
+<br>
+		Map output materialized bytes=1431
+<br>
+		Input split bytes=135
+<br>
+		Combine input records=152
+<br>
+		Combine output records=123
+<br>
+		Reduce input groups=123
+<br>
+		Reduce shuffle bytes=1431
+<br>
+		Reduce input records=123
+<br>
+		Reduce output records=123
+<br>
+		Spilled Records=246
+<br>
+		Shuffled Maps =1
+<br>
+		Failed Shuffles=0
+<br>
+		Merged Map outputs=1
+<br>
+		GC time elapsed (ms)=285
+<br>
+		CPU time spent (ms)=2160
+<br>
+		Physical memory (bytes) snapshot=316317696
+<br>
+		Virtual memory (bytes) snapshot=4156248064
+<br>
+		Total committed heap usage (bytes)=198316032
+<br>
+	Shuffle Errors
+<br>
+		BAD_ID=0
+<br>
+		CONNECTION=0
+<br>
+		IO_ERROR=0
+<br>
+		WRONG_LENGTH=0
+<br>
+		WRONG_MAP=0
+<br>
+		WRONG_REDUCE=0
+<br>
+	File Input Format Counters 
+<br>
+		Bytes Read=869
+<br>
+	File Output Format Counters 
+<br>
+		Bytes Written=933
+<br>
+[root@hadoop130 ~]# 
+<br>
+[root@hadoop130 ~]# exit
+<br>
+logout
+<br>
+[不错, 真不错, 真好, 很棒, 舒适, 舒服, 很好, 很舒服, 很舒适, 体验好, 好, 非常好, 棒, 好的, 谢谢, 爱你]
+<br>
+[垃圾, 乐色, 难受, 讨厌, 烂, 很烂, 不好, 不舒服, 不爱]
+<br>
+02 
+03 
+42 
+上 
+上有 
+下有 
+不与 
+不好 
+不得 
+不舒服 
+不错 
+丛 
+之 
+之难 
+之高 
+九 
+人烟 
+以 
+仰 
+住在 
+何 
+八千 
+六 
+冲 
+凫 
+千岁 
+危乎 
+及 
+可以 
+吁 
+后天 
+周围 
+哉 
+噫 
+嚱 
+四万 
+四万八千 
+回 
+地崩山摧 
+坐 
+塞 
+壮士 
+天梯 
+太白 
+安全 
+尔来 
+尚不 
+山里 
+岁 
+岩 
+峦 
+峨眉 
+巅 
+川 
+床 
+床铺 
+度 
+开国 
+当 
+很 
+很好 
+得过 
+息 
+愁 
+手 
+扪参历井 
+折 
+抚 
+挺好 
+攀援 
+日 
+有 
+栈 
+横 
+欲 
+步 
+死 
+波 
+泥 
+测试 
+然后 
+猱 
+猿 
+环境 
+百 
+百步 
+的 
+盘 
+相 
+真不 
+真不错 
+真好 
+石 
+秦 
+绝 
+胁 
+膺 
+舒服 
+茫然 
+萦 
+蚕 
+蜀道 
+西 
+连 
+逆 
+通人 
+道 
+酒店 
+里面 
+钩 
+长叹 
+难于 
+难于上青天 
+难受 
+青 
+青天 
+飞 
+高 
+高标 
+鱼 
+鸟 
+黄鹤 
+龙 

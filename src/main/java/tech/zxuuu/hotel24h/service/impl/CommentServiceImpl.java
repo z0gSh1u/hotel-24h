@@ -33,7 +33,7 @@ public class CommentServiceImpl implements CommentService {
   public Integer insertComment(Comment comment, String name, String phone) {
     // 信息错误
     Reserve reserve = reserveMapper.selectReserveById(comment.getId());
-    if (reserve == null || !reserve.getReserverName().equals(name) || !reserve.getReserverPhone().equals(phone) || !reserve.getStatus().equals(3)) {
+    if (reserve == null || !reserve.getReserverName().equals(name) || !reserve.getReserverPhone().equals(phone) || !reserve.getStatus().equals(2)) {
       return 2;
     }
     // 重复提交错误
@@ -71,11 +71,11 @@ public class CommentServiceImpl implements CommentService {
     } catch (IOException e) {
       e.printStackTrace();
     }
-//    try {
-//      System.setOut(new PrintStream(logFile));
-//    } catch (FileNotFoundException e) {
-//      e.printStackTrace();
-//    }
+    try {
+      System.setOut(new PrintStream(logFile));
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
     // 第零步 - 读配置文件，删除旧文件
     final String HADOOP_CONFIG_PATH = "/config/hadoop.properties";
     Properties properties = new Properties();
