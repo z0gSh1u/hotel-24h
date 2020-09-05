@@ -10,6 +10,7 @@ import tech.zxuuu.hotel24h.service.ReserveService;
 import tech.zxuuu.hotel24h.util.JSONUtils;
 
 import javax.annotation.Resource;
+import javax.ws.rs.PUT;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;

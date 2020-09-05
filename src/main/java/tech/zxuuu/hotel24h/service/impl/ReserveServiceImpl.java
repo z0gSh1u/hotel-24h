@@ -33,9 +33,9 @@ public class ReserveServiceImpl implements ReserveService {
     pattern += '%';
     String res = this.reserveMapper.selectMaxReserveByDate(pattern);
     if (res == null) {
-      return new SimpleDateFormat("yyyyMMdd").format(date);
+      return new SimpleDateFormat("yyyyMMdd").format(new Date()) + "000";
     } else {
-      return res + "001";
+      return res;
     }
   }
 
