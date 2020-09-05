@@ -1,5 +1,7 @@
 # 一个在24小时内写成的酒店客房管理系统
 
+![demo](https://i.loli.net/2020/09/05/N2gthoEMmS5bn9d.png)
+
 ## 启动配置
 
 - 依赖安装
