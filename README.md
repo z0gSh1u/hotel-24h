@@ -2,8 +2,9 @@
 
 ## 启动配置
 
-- 使用 Maven 严格按照 pom.xml 安装依赖
-
+- 依赖安装
+  - 使用 Maven 严格按照 pom.xml 安装依赖
+  - 手动添加 `/lib/IKAnalyzer2012FF_u1.jar` 到构建
 - 配置 MySQL
   - 将 `applicationExample.yml` 重命名为 `application.yml`
   - 修改其中的 MySQL 地址
@@ -13,7 +14,6 @@
   - Hadoop 配置文件请参考 `/hadoop_etc/etc`
   - 修改 `src/main/resources/config/hadoop.properties` 中的 HDFS 和 namenode 配置
   - 修改 `CommentServiceImpl` 类 `analyzeComment` 方法下的日志输出路径、Hadoop Example 路径
-
 - 访问 `http://localhost:8080`
 
 ## 主要功能
