@@ -17,12 +17,14 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    @GetMapping("loginPage")
+    public String turnToLoginPage() {return "emp/login";}
+
     @PostMapping("/admin/select")
     public @ResponseBody String selectEmp(@RequestParam String empId, @RequestParam String empName) {
         Map map = new Hashtable<String, Object>(){{
             put("list", adminService.queryEmp(new Emp(empId, "", empName)));
         }};
-        System.out.println("here");
         return JSONUtils.buildJSON(map);
     }
 
