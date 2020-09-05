@@ -11,10 +11,23 @@ $(document).keypress((event) => {
 
 // 验证身份
 function verifyAdmin() {
-    if (sessionStorage.getItem("empId") != 'admin' || sessionStorage.getItem("empName") != 'admin') {
-        alert("权限不足")
-        window.location.href = '/login'
-    }
+    $.ajax({
+        url: "/admin/sessionId",
+        type: "POST",
+        async: false,
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json",
+        success: (data) => {
+            if (data.empId != 'admin') {
+                alert("权限不足")
+                window.location.href = '/login'
+            }
+        },
+        error: (error) => {
+            alert("发生错误")
+            console.log(error)
+        }
+    })
 }
 
 // 切换功能标签
@@ -31,6 +44,16 @@ function showDiv(id) {
 function logoutAdmin() {
     sessionStorage.clear()
     window.location.href = "/login"
+    $.ajax({
+        url: "/admin/logout",
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json",
+        error: (error) => {
+            alert("发生错误")
+            console.log(error)
+        }
+    })
 }
 
 // 修改员工信息

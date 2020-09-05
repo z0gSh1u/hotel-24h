@@ -12,6 +12,7 @@ import tech.zxuuu.hotel24h.service.LoginService;
 import tech.zxuuu.hotel24h.util.JSONUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,13 +46,14 @@ public class LoginController {
 
   @PostMapping(path = "/login")
   public @ResponseBody
-  String login(@RequestParam String empId, @RequestParam String empPassword) {
+  String login(@RequestParam String empId, @RequestParam String empPassword, HttpSession session) {
     Emp emp = this.loginService.empLogin(empId, empPassword);
     Map map = new HashMap<String, String>();
     if (emp == null) {
       map.put("empId", "");
       map.put("empName", "");
     } else {
+      session.setAttribute("empId", emp.getId());
       map.put("empId", emp.getId());
       map.put("empName", emp.getName());
     }

@@ -25,10 +25,10 @@ public class WebMvcConfigure implements WebMvcConfigurer {
       .maxAge(3600);
   }
 
-//  @Override
-//  public void addInterceptors(InterceptorRegistry registry) {
-//    registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/emp/**", "/room/**", "/reserve/**", "/comment/**", "/check/**")
-//            .excludePathPatterns("/login", "/changePwdPage");
-//  }
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/emp/**", "/room/**", "/reserve/**", "/comment/**", "/check/**", "/", "/indexPage", "/adminPage")
+            .excludePathPatterns("/login", "/changePwdPage", "/changePwd");
+  }
 
 }
