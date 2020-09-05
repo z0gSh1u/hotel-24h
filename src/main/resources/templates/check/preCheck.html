@@ -52,9 +52,14 @@
 
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="search" class="btn btn-danger" onclick="searchbtn()">
+
+        <button type="submit" class="btn btn-danger" onclick="submitbtn()">
           入住
         </button>
+        <button type="del" class="btn btn-danger" onclick="delbtn()">
+          退订
+        </button>
+
       </div>
     </div>
 
@@ -125,24 +130,52 @@
               width: 150,
               formatter: (id, row, idx) => {
                 console.log(id, row, idx)
-                return `<button class="btn btn-danger" onclick="submitbtn(${id})" ${row.status == 0 ? '' : 'disabled'}>入住</button>
-                        <button class="btn btn-danger" onclick="delbtn(${id})"  ${row.status == 1 ? '' : 'disabled'}>退订</button>`
+
+                return `<button class="btn btn-danger" onclick="submitbtn()" ${
+                  row.status == 0 ? '' : 'disabled'
+                }>入住</button>
+                                <button class="btn btn-danger" onclick="delbtn()"  ${
+                                  row.status == 1 ? '' : 'disabled'
+                                }>退订</button>`
+
               },
             },
           ],
         })
       })
 
-      function submitbtn(id) {
+
+      function submitbtn() {
         let result = confirm('确定入住吗？')
         if (result) {
-          console.log(${id}
+          console.log(1)
+          let id = $('#id').val().trim()
+          let reserverName = $('#reserverName').val().trim()
+          let reserverPhone = $('#reserverPhone').val().trim()
+          console.log(
+            'id:' +
+              id +
+              '  reserverName:' +
+              reserverName +
+              '   reserverPhone:' +
+              reserverPhone
           )
+          let stu = {
+            id: id,
+            reserverName: reserverName,
+            reserverPhone: reserverPhone,
+          }
+          console.log(stu)
+
           $.ajax({
             url: '/check/checkIn',
             method: 'POST',
             data: {
-              id
+
+              id,
+              reserverName,
+              reserverPhone,
+
             },
             contentType: 'application/x-www-form-urlencoded',
             dataType: 'json',
@@ -157,17 +190,38 @@
           alert('已取消入住的操作')
         }
       }
-      function delbtn(id) {
+
+      function delbtn() {
         let result = confirm('确定需要退房吗？')
         if (result) {
+          let id = $('#id').val().trim()
+          let reserverName = $('#reserverName').val().trim()
+          let reserverPhone = $('#reserverPhone').val().trim()
           console.log(
-            ${id}
+            'id:' +
+              id +
+              '  reserverName:' +
+              reserverName +
+              '   reserverPhone:' +
+              reserverPhone
           )
+          let stu = {
+            id: id,
+            reserverName: reserverName,
+            reserverPhone: reserverPhone,
+          }
+          console.log(stu)
+
           $.ajax({
             url: '/check/checkOut',
             method: 'POST',
             data: {
-              id
+
+
+              id,
+              reserverName,
+              reserverPhone,
+
             },
             contentType: 'application/x-www-form-urlencoded',
             dataType: 'json',
