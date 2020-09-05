@@ -2,6 +2,12 @@ $(document).ready(function() {
     sessionStorage.clear()
 })
 
+$(document).keypress((event) => {
+    if (event.keyCode == 13) {
+        login()
+    }
+})
+
 // 清空登录信息
 function clearLogin() {
     $("#empId").val('')
