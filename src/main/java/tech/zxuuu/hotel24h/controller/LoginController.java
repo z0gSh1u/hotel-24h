@@ -28,6 +28,11 @@ public class LoginController {
     return "index";
   }
 
+  @GetMapping(path = "/logout")
+  public String logout(HttpSession session) {
+    session.invalidate();
+    return "emp/login";
+  }
 
   @GetMapping(path = "/login")
   public String turnToLoginPage() {
@@ -54,6 +59,7 @@ public class LoginController {
       map.put("empName", "");
     } else {
       session.setAttribute("empId", emp.getId());
+      session.setMaxInactiveInterval(600);
       map.put("empId", emp.getId());
       map.put("empName", emp.getName());
     }

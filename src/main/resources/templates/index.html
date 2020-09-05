@@ -27,6 +27,7 @@
       room: '房间管理',
       check: '入住退房管理',
       comment: '评论管理',
+      logout: '退出登录',
     }
     const modules = {
       emp: [
@@ -74,6 +75,12 @@
           name: '大数据评论分析系统',
           url: '/comment/analyzeView',
         },
+      ],
+      logout: [
+        {
+          name: '退出登录',
+          url: '/logout',
+        }
       ],
     }
     function generateModule(key) {
