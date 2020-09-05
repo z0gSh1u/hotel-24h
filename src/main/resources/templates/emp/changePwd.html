@@ -109,6 +109,11 @@
         </form>
       </div>
       <script>
+        $(document).keypress((event) => {
+          if (event.keyCode == 13) {
+            changePwd()
+          }
+        })
         function changePwd() {
           if ($('#empId').val() == '' || $('#empPassword').val() == '') {
             alert('请输入账号与原密码')

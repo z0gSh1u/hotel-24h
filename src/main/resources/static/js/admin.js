@@ -3,6 +3,12 @@ $(document).ready(function() {
     listEmps()
 })
 
+$(document).keypress((event) => {
+    if (event.keyCode == 13) {
+        $("#" + currentShow + " > [name='submitBtn']").trigger("click")
+    }
+})
+
 // 验证身份
 function verifyAdmin() {
     if (sessionStorage.getItem("empId") != 'admin' || sessionStorage.getItem("empName") != 'admin') {
