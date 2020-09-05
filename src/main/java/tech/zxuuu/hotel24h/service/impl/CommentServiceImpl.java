@@ -71,11 +71,11 @@ public class CommentServiceImpl implements CommentService {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    try {
-      System.setOut(new PrintStream(logFile));
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    }
+//    try {
+//      System.setOut(new PrintStream(logFile));
+//    } catch (FileNotFoundException e) {
+//      e.printStackTrace();
+//    }
     // 第零步 - 读配置文件，删除旧文件
     final String HADOOP_CONFIG_PATH = "/config/hadoop.properties";
     Properties properties = new Properties();
