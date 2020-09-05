@@ -1,3 +1,16 @@
+$(document).ready(function() {
+    verifyAdmin()
+    listEmps()
+})
+
+// 验证身份
+function verifyAdmin() {
+    if (sessionStorage.getItem("empId") != 'admin' || sessionStorage.getItem("empName") != 'admin') {
+        alert("权限不足")
+        window.location.href = 'login'
+    }
+}
+
 // 切换功能标签
 let currentShow = "selectEmpDiv"
 function showDiv(id) {
@@ -6,6 +19,12 @@ function showDiv(id) {
     }
     $("#" + id).css("display", "inline")
     currentShow = id
+}
+
+// 退出管理员账号
+function logoutAdmin() {
+    sessionStorage.clear()
+    window.location.href = "login"
 }
 
 // 修改员工信息
@@ -128,14 +147,14 @@ function selectEmp() {
     window.location.href = window.location.href
 }
 
-// 清楚查询条件
+// 清除查询条件
 function clearSelect() {
     $("#selectEmpId").val("")
     $("#selectEmpName").val("")
 }
 
 // 显示查找的员工信息列表
-$(document).ready(function() {
+function listEmps() {
     $('#selectEmpTable').bootstrapTable({
         ajax: function (request) {
             $.ajax({
@@ -148,7 +167,6 @@ $(document).ready(function() {
                 },
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data.list)
                     request.success({
                         row: data.list,
                     })
@@ -165,6 +183,7 @@ $(document).ready(function() {
         pagination: true,
         sidePagination: 'client',
         pageSize: 10,
+        search: true,
         columns: [
             {
                 title: '员工账号',
@@ -180,7 +199,7 @@ $(document).ready(function() {
     $("#selectEmpName").val(sessionStorage.getItem("selectEmpName"))
     sessionStorage.setItem("selectEmpId", "")
     sessionStorage.setItem("selectEmpName", "")
-})
+}
 
 // 修改管理员密码
 function changeAdminPwd() {

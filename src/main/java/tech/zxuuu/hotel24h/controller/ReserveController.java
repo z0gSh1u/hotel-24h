@@ -31,9 +31,8 @@ public class ReserveController {
   public @ResponseBody
   String addReserve(Integer roomId, String reserverName, String reserverPhone, Long startDate, Long endDate) {
     reserveService.addReserve(new Reserve(null, roomId, new Date(startDate), new Date(endDate), reserverName, reserverPhone, null));
-    Map map = new HashMap<String, Integer>(){{
-      put("status", 0);
-    }};
+    Map<String, Object> map = new HashMap<>();
+    map.put("status", 1);
     return JSONUtils.buildJSON(map);
   }
 
@@ -49,14 +48,17 @@ public class ReserveController {
     Map map = new HashMap<String, Object>() {{
       put("data", reserves);
     }};
+    System.out.println("xxx");
     return JSONUtils.buildJSON(map);
   }
 
   @PostMapping("/delete")
   public @ResponseBody
   String deleteReserve(@RequestParam("id") String id) {
-    this.reserveService.deleteReserve(id);
-    return "Reserve/ShowAllReserves";
+    reserveService.deleteReserve(id);
+    Map<String, Object> map = new HashMap<>();
+    map.put("status", 1);
+    return JSONUtils.buildJSON(map);
   }
 
   @GetMapping("/available")

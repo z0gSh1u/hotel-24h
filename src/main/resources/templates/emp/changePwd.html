@@ -23,22 +23,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <script type="text/javascript">
-      $.backstretch(
-        [
-          'img/indexLoop/1.jpg',
-          'img/indexLoop/2.jpg',
-          'img/indexLoop/3.jpg',
-          'img/indexLoop/4.jpg',
-          'img/indexLoop/5.jpg',
-          'img/indexLoop/6.jpg',
-        ],
-        {
-          duration: 5000,
-          fade: 1000,
-        }
-      )
-    </script>
     <div
       id="wholeblock"
       class="container well"
@@ -50,9 +34,6 @@
       "
     >
       <div id="banner" style="opacity: 1">
-        <center>
-          <img src="img/seulogo-transparent.png" width="20%" height="100%" />
-        </center>
         <h1 style="text-align: center"><b>24小时</b>&nbsp;酒店管理系统</h1>
       </div>
       <br />
@@ -121,7 +102,7 @@
             type="button"
             class="btn btn-primary"
             style="font-size: 18px"
-            onclick="window.location.href = '/';"
+            onclick="window.location.href = 'login';"
           >
             返 回
           </button>
@@ -155,7 +136,7 @@
                   alert('原密码不正确')
                 } else {
                   alert('密码修改成功')
-                  window.location.href = '/'
+                  window.location.href = 'login'
                 }
               },
               error: (error) => {
