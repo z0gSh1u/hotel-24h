@@ -4,7 +4,7 @@ function clearLogin() {
     $("#empPassword").val('')
 }
 
-//登录
+// 登录
 function login() {
     if ($("#empId").val() == "" || $("#empPassword").val() == "") {
         alert("账号及密码不可为空")
@@ -25,6 +25,9 @@ function login() {
                     sessionStorage.setItem("empId", data.empId)
                     sessionStorage.setItem("empName", data.empName)
                     alert("登录成功！欢迎，" + sessionStorage.getItem("empName") + "!")
+                    if (sessionStorage.getItem("empId") == 'admin') {
+
+                    }
                 }
             },
             error: (error) => {
