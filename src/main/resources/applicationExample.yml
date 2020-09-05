@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://<mysql_ip>:3306/hotel?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: hotel
+    password: hotel
+
+  thymeleaf:
+    cache: false
+
+mybatis:
+  type-aliases-package: tech.zxuuu.hotel24h.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true

@@ -34,3 +34,4 @@ build/
 
 # avoid password leak
 **/application.yml
+/sql/hotel_with_data.sql

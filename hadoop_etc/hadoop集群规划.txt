@@ -1,0 +1,6 @@
+hadoop128 192.168.239.128
+hadoop129 192.168.239.129
+hadoop130 192.168.239.130 NameNode,DataNode  NodeManager
+hadoop131 192.168.239.131 2NN,DataNode       NodeManager
+hadoop132 192.168.239.132 DataNode           ResourceManager,NodeManager
+
