@@ -13,7 +13,7 @@ $(document).keypress((event) => {
 function verifyAdmin() {
     if (sessionStorage.getItem("empId") != 'admin' || sessionStorage.getItem("empName") != 'admin') {
         alert("权限不足")
-        window.location.href = 'login'
+        window.location.href = '/login'
     }
 }
 
@@ -30,7 +30,7 @@ function showDiv(id) {
 // 退出管理员账号
 function logoutAdmin() {
     sessionStorage.clear()
-    window.location.href = "login"
+    window.location.href = "/login"
 }
 
 // 修改员工信息

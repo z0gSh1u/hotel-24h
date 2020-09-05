@@ -17,7 +17,7 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("loginPage")
+    @GetMapping("/loginPage")
     public String turnToLoginPage() {return "emp/login";}
 
     @PostMapping("/admin/select")

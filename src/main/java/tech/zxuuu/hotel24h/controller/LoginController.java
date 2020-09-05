@@ -19,13 +19,13 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @GetMapping(path = "login")
+    @GetMapping(path = "/login")
     public String turnToLoginPage() {return "emp/login";}
 
-    @GetMapping(path = "adminPage")
+    @GetMapping(path = "/adminPage")
     public String turnToAdminPage() {return "emp/admin";}
 
-    @GetMapping(path = "indexPage")
+    @GetMapping(path = "/indexPage")
     public String turnToIndexPage() {return "index";}
 
     @PostMapping(path = "/login")
