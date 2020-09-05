@@ -10,6 +10,7 @@ import tech.zxuuu.hotel24h.service.ReserveService;
 import tech.zxuuu.hotel24h.util.JSONUtils;
 
 import javax.annotation.Resource;
+import javax.ws.rs.PUT;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,10 @@ public class ReserveController {
   public @ResponseBody
   String addReserve(Integer roomId, String reserverName, String reserverPhone, Long startDate, Long endDate) {
     reserveService.addReserve(new Reserve(null, roomId, new Date(startDate), new Date(endDate), reserverName, reserverPhone, null));
-    return "{'status': '0'}";
+    Map map = new HashMap<String, Integer>(){{
+      put("status", 0);
+    }};
+    return JSONUtils.buildJSON(map);
   }
 
   @GetMapping("/preShowAll")

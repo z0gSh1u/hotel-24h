@@ -32,13 +32,13 @@
     <hr />
     <div class="container">
       <div class="step step1 visiable-step">
-        <p>STEP 1 - 请选择您想要预定的时间段：</p>
+        <p>STEP 1 - 请选择您想要预定的时间段:</p>
         <label for="startDate">
-          开始时间：
+          开始时间:
           <input type="date" id="startDate" />
         </label>
         <label for="endDate">
-          结束时间：
+          结束时间:
           <input type="date" id="endDate" />
         </label>
         <button id="step1Btn" onclick="queryReservableRooms()">
@@ -47,21 +47,21 @@
       </div>
 
       <div class="step step2">
-        <p>STEP 2 - 请选择要预定的房号：</p>
-        <label for="roomId">房号</label>
+        <p>STEP 2 - 请选择要预定的房号:</p>
+        <label for="roomIdSelect">房号</label>
         <select id="roomIdSelect"></select>
       </div>
 
       <div class="step step3">
-        <p>STEP 3 - 请填写个人信息：</p>
+        <p>STEP 3 - 请填写个人信息:</p>
         <label for="name">
-          姓名：
-          <input type="text" id="name" />
+          姓名:
+          <input type="text" id="name" >
         </label>
         <br />
         <label for="phone">
-          手机号码：
-          <input type="text" id="phone" />
+          手机号码:
+          <input type="text" id="phone" maxlength="11">
         </label>
       </div>
       <button class="btn btn-primary" id="submitForm">提交预定</button>
@@ -102,6 +102,16 @@
       })
 
       $('#submitForm').on('click', function () {
+        var phonenumber=$('#phone').val();
+        var re=/^[1-9]+[0-9]*]*$/;
+        var sign=false;
+        if(!re.test(phonenumber)){
+          sign=true;
+        }
+        if(sign||phonenumber.length<11) {
+          alert("手机号码不合法");
+          return;
+        }
         $.ajax({
           url: '/reserve/add',
           method: 'POST',
@@ -115,7 +125,9 @@
           contentType: 'application/x-www-form-urlencoded',
           dataType: 'json',
           success: (data) => {
-            alert('预订成功！')
+            console.log(data.status)
+            alert(['添加成功', '系统出错'][data.status])
+            window.location.href = window.location.href
           },
           error: (error) => {
             console.log(error)
