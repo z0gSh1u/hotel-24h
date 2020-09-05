@@ -3,7 +3,6 @@ package tech.zxuuu.hotel24h;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tech.zxuuu.hotel24h.interceptor.LoginInterceptor;
 
@@ -19,10 +18,10 @@ public class WebMvcConfigure implements WebMvcConfigurer {
       .maxAge(3600);
   }
 
-//  @Override
-//  public void addInterceptors(InterceptorRegistry registry) {
-//    registry.addInterceptor(new LoginInterceptor()).addPathPatterns("**/*")
-//      .excludePathPatterns("/login/**/*", "/changePwdPage/**/*", "/", "/index", "**/*.jpg", "**/*.png", "**/*.gif", "**/*.js", "**/*.css", "**/*.less");
-//  }
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/emp/**", "/room/**", "/reserve/**", "/comment/**", "/check/**", "/", "/indexPage", "/adminPage")
+            .excludePathPatterns("/login", "/changePwdPage", "/changePwd");
+  }
 
 }

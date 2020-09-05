@@ -1,5 +1,6 @@
 package tech.zxuuu.hotel24h.controller;
 
+import org.apache.avro.data.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +8,7 @@ import tech.zxuuu.hotel24h.entity.Emp;
 import tech.zxuuu.hotel24h.service.AdminService;
 import tech.zxuuu.hotel24h.util.JSONUtils;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -20,6 +22,19 @@ public class AdminController {
   @GetMapping("/loginPage")
   public String turnToLoginPage() {
     return "emp/login";
+  }
+
+  @PostMapping("/admin/logout")
+  public void adminLogout(HttpSession session) {
+    session.invalidate();
+  }
+
+  @PostMapping("/admin/sessionId")
+  public @ResponseBody String getSessionId(HttpSession session) {
+    Map map = new HashMap<String, String>(){{
+      put("empId", (String)session.getAttribute("empId"));
+    }};
+    return JSONUtils.buildJSON(map);
   }
 
   @PostMapping("/admin/select")

@@ -38,7 +38,7 @@ function login() {
                         window.location.href = "/adminPage"
                     } else {
                         alert("登录成功！欢迎，" + sessionStorage.getItem("empName") + "!")
-                        window.location.href = "/"
+                        window.location.href = "/indexPage"
                     }
                 }
             },
