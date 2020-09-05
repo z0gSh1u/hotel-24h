@@ -19,29 +19,9 @@
     <div class="header">
       <p class="title">住客评论内容列表</p>
     </div>
-    <input type="text" id="searchInput">
-    <button onclick="handleSearch()">搜索</button>
     <table id="commentTable"></table>
   </body>
   <script>
-    function handleSearch() {
-      if ($('#searchInput').val().trim() == '') {
-        alert('请输入搜索内容')
-        return
-      }
-      sessionStorage.setItem('_comment_search', $('#searchInput').val())
-      window.location.href = window.location.href
-    }
-    function resFilter(res, include) {
-      let resData = res.data
-      if (include) {
-        return {
-          data: resData.filter((v) => JSON.stringify(v).includes(include)),
-        }
-      }
-      return res
-    }
-
     $(document).ready(function () {
       $('#commentTable').bootstrapTable({
         ajax: function (request) {
@@ -51,7 +31,6 @@
             contentType: 'application/x-www-form-urlencoded',
             dataType: 'json',
             success: function (res) {
-              res = resFilter(res, sessionStorage.getItem('_comment_search'))
               request.success({
                 row: res.data,
               })
@@ -67,6 +46,7 @@
         pagination: true,
         sidePagination: 'client',
         pageSize: 10,
+        search: true,
         columns: [
           {
             title: '订单号',
