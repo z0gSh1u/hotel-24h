@@ -1,6 +1,6 @@
 # 一个在24小时内写成的酒店客房管理系统
 
-![demo](https://i.loli.net/2020/09/05/N2gthoEMmS5bn9d.png)
+![](https://gitee.com/z0gSh1u/image-static/raw/master/picgo-2021/N2gthoEMmS5bn9d.png)
 
 ## 启动配置
 
@@ -44,7 +44,3 @@
 
 - 普通员工：帐123，密321
 - Admin帐户：帐admin，密admin
-
-## 联系
-
-https://github.com/z0gSh1u/hotel-24h
