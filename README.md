@@ -1,6 +1,6 @@
 # 一个在24小时内写成的酒店客房管理系统
 
-![](https://gitee.com/z0gSh1u/image-static/raw/master/picgo-2021/N2gthoEMmS5bn9d.png)
+![](https://z3.ax1x.com/2021/05/18/gh7sOK.png)
 
 ## 启动配置
 
